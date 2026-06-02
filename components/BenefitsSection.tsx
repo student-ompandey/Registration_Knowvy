@@ -5,34 +5,34 @@ import { Award, Users, TrendingUp, Code, FolderOpen, UserCheck } from "lucide-re
 
 const benefits = [
   {
-    title: "Certificate of Participation",
-    icon: Award,
-    description: "Receive a verified certificate to showcase your new skills on LinkedIn and your resume.",
-  },
-  {
-    title: "Networking Opportunities",
-    icon: Users,
-    description: "Connect with like-minded peers, industry professionals, and potential collaborators.",
-  },
-  {
-    title: "Career Growth",
-    icon: TrendingUp,
-    description: "Gain insights into the tech industry that will help accelerate your career trajectory.",
-  },
-  {
-    title: "Practical Experience",
+    title: "SOFTWARE DEVELOPERS",
     icon: Code,
-    description: "Move beyond theory and build practical, working applications during the workshop.",
+    description: "Enhance your development workflow with AI agents and cloud native technologies.",
   },
   {
-    title: "Portfolio Building",
+    title: "STUDENTS & BEGINNERS",
+    icon: Users,
+    description: "Learn industry-ready skills, build real projects, and network with professionals.",
+  },
+  {
+    title: "STARTUP FOUNDERS",
+    icon: TrendingUp,
+    description: "Discover how AI technologies and Azure can scale your product and business.",
+  },
+  {
+    title: "AI ENTHUSIASTS",
+    icon: Award,
+    description: "Deep dive into Large Language Models, Copilot, and automation workflows.",
+  },
+  {
+    title: "CLOUD PROFESSIONALS",
     icon: FolderOpen,
-    description: "Add a high-quality, modern web application to your professional portfolio.",
+    description: "Explore advanced deployment strategies and Azure AI services.",
   },
   {
-    title: "Expert Guidance",
+    title: "PRODUCT BUILDERS",
     icon: UserCheck,
-    description: "Learn directly from experienced developers who know what it takes to succeed.",
+    description: "Learn to build, deploy, and scale real-world AI applications efficiently.",
   },
 ];
 
@@ -57,26 +57,30 @@ const itemVariants = {
 
 export function BenefitsSection() {
   return (
-    <section id="benefits" className="py-24 bg-card/30 relative">
+    <section id="benefits" className="py-24 bg-card/10 relative border-t border-dashed border-primary/20">
       <div className="container mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-5xl font-bold mb-4"
+            className="flex items-center justify-center gap-4 mb-4"
           >
-            Exclusive Benefits
-          </motion.h2>
+            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
+            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
+              WHO_SHOULD_ATTEND<span className="text-primary">_</span>
+            </h2>
+            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
+          </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400 max-w-2xl mx-auto text-lg"
+            className="text-gray-400 max-w-2xl mx-auto text-lg font-sans"
           >
-            What you'll get by participating in this intensive, one-day tech workshop.
+            The event is designed for a diverse audience of tech professionals and enthusiasts.
           </motion.p>
         </div>
 
@@ -91,13 +95,19 @@ export function BenefitsSection() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="bg-background border border-border/50 rounded-2xl p-8 hover:border-primary/50 transition-colors duration-300 group"
+              className="bg-black/50 border border-border p-8 hover:border-primary/80 transition-colors duration-300 group relative overflow-hidden"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <benefit.icon className="text-primary w-6 h-6" />
+              {/* Corner Accents */}
+              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              
+              <div className="w-12 h-12 flex items-center justify-center mb-6 border border-primary/30 rotate-45 group-hover:bg-primary/20 transition-all duration-300">
+                <benefit.icon className="text-primary w-5 h-5 -rotate-45" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-white">{benefit.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <h3 className="text-lg font-mono font-bold mb-3 text-white uppercase tracking-wide">{benefit.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed font-sans">
                 {benefit.description}
               </p>
             </motion.div>

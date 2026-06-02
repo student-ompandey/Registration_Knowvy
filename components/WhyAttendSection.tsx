@@ -5,57 +5,62 @@ import { Laptop, MonitorPlay, Briefcase, Lightbulb } from "lucide-react";
 
 const reasons = [
   {
-    title: "Hands-on Learning",
-    description: "Don't just listen. Code along and build components from scratch to understand the core concepts deeply.",
-    icon: Laptop,
-    color: "from-blue-500 to-cyan-400",
-  },
-  {
-    title: "Live Demonstrations",
-    description: "Watch experts build complex features live, explaining their thought process and best practices.",
-    icon: MonitorPlay,
-    color: "from-primary to-secondary",
-  },
-  {
-    title: "Real Projects",
-    description: "Apply your skills immediately by working on a real-world project during the workshop.",
-    icon: Briefcase,
-    color: "from-green-500 to-emerald-400",
-  },
-  {
-    title: "Industry Insights",
-    description: "Learn what top companies are looking for and how to structure your projects for scale.",
+    title: "LEARN FROM EXPERTS",
+    description: "Gain insights from experienced developers and industry professionals.",
     icon: Lightbulb,
-    color: "from-orange-500 to-yellow-400",
+  },
+  {
+    title: "HANDS-ON KNOWLEDGE",
+    description: "Understand how real-world AI applications are built and deployed.",
+    icon: Laptop,
+  },
+  {
+    title: "NETWORKING",
+    description: "Connect with students, developers, founders, and technology leaders.",
+    icon: Briefcase,
+  },
+  {
+    title: "CAREER GROWTH",
+    description: "Discover opportunities in AI, cloud computing, and software engineering.",
+    icon: MonitorPlay,
   },
 ];
 
 export function WhyAttendSection() {
   return (
-    <section id="why-attend" className="py-24 relative z-10">
+    <section id="why-attend" className="py-24 relative z-10 bg-background border-t border-border/50">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-primary to-transparent" />
+      
       <div className="container mx-auto px-6 md:px-12">
-        <div className="text-center mb-16">
-          <motion.h2
+        <div className="text-center mb-20 mt-12">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-5xl font-bold mb-4"
+            className="flex items-center justify-center gap-4 mb-4"
           >
-            Why Attend This Workshop?
-          </motion.h2>
+            <div className="h-[1px] w-12 bg-primary/50"></div>
+            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
+              ABOUT_THE_EVENT<span className="text-primary">_</span>
+            </h2>
+            <div className="h-[1px] w-12 bg-primary/50"></div>
+          </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400 max-w-2xl mx-auto text-lg"
+            className="text-gray-400 max-w-2xl mx-auto text-lg font-sans"
           >
-            A comprehensive session designed to accelerate your growth and equip you with modern web development skills.
+            Microsoft Build: LocalHost Bhopal is a community-driven technology event designed to bring together developers, students, founders, and industry professionals. The event focuses on the future of AI, Cloud Computing, Large Language Models, Azure AI, Copilot technologies, and modern software engineering practices. Attendees will gain practical knowledge about building, deploying, and scaling real-world AI systems.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {/* Horizontal connecting line for desktop */}
+          <div className="hidden lg:block absolute top-12 left-24 right-24 h-[1px] border-t border-dashed border-primary/30 -z-10" />
+          
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
@@ -63,17 +68,17 @@ export function WhyAttendSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-card border border-border rounded-2xl p-6 relative overflow-hidden group"
+              className="flex flex-col items-center text-center group"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br ${reason.color}`}
-              >
-                <reason.icon className="text-white w-6 h-6" />
+              {/* Diamond Icon Container */}
+              <div className="relative w-24 h-24 mb-8 flex items-center justify-center">
+                <div className="absolute inset-0 border border-primary/40 rotate-45 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300"></div>
+                <div className="absolute inset-2 border border-primary/20 rotate-45"></div>
+                <reason.icon className="text-primary w-8 h-8 relative z-10 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-white">{reason.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              
+              <h3 className="text-xl font-mono font-bold mb-3 text-white uppercase tracking-wider">{reason.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed font-sans px-4">
                 {reason.description}
               </p>
             </motion.div>

@@ -1,41 +1,44 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, Globe, MessageSquare } from "lucide-react";
+import { Mail, Phone, Globe, MessageSquare, Terminal } from "lucide-react";
 
 const contacts = [
-  { icon: Mail, label: "Email", value: "hello@techworkshop.com", href: "mailto:hello@techworkshop.com" },
-  { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
-  { icon: Globe, label: "Website", value: "techworkshop26.com", href: "#" },
-  { icon: MessageSquare, label: "Community", value: "Join Discord", href: "#" },
+  { icon: Globe, label: "ORGANIZER", value: "Knowvy Technologies", href: "https://knowvy.tech" },
+  { icon: Terminal, label: "REGISTRATION", value: "Official Link", href: "https://knowvy.tech/microsoft" },
+  { icon: MessageSquare, label: "COMMUNITY", value: "Join Network", href: "#" },
+  { icon: Mail, label: "CONTACT", value: "hello@knowvy.tech", href: "mailto:hello@knowvy.tech" },
 ];
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px] -z-10" />
+    <section id="contact" className="py-24 relative overflow-hidden bg-background border-t border-dashed border-primary/20">
+      {/* Tech grid overlay */}
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_30%,transparent_100%)] opacity-10" />
 
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="text-center mb-16">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-5xl font-bold mb-4"
+            className="flex items-center justify-center gap-4 mb-4"
           >
-            Get in Touch
-          </motion.h2>
+            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
+            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
+              ORGANIZER_CONTACT<span className="text-primary">_</span>
+            </h2>
+            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
+          </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400 max-w-2xl mx-auto text-lg"
+            className="text-gray-400 max-w-2xl mx-auto text-lg font-sans"
           >
-            Have more questions? Reach out to our team directly.
+            Establish a direct connection with central command.
           </motion.p>
         </div>
 
@@ -48,14 +51,16 @@ export function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-card/40 backdrop-blur-md border border-border/60 rounded-2xl p-6 flex flex-col items-center text-center group hover:border-primary/50 hover:bg-card/60 transition-all"
+              className="bg-black/50 border border-border p-6 flex flex-col items-center text-center group hover:border-primary/50 transition-all relative overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <contact.icon className="w-6 h-6 text-gray-300 group-hover:text-primary transition-colors" />
+              <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <Terminal className="w-4 h-4 text-primary/50" />
               </div>
-              <h4 className="text-sm font-medium text-gray-500 mb-1">{contact.label}</h4>
-              <p className="text-white font-medium">{contact.value}</p>
+              <div className="w-14 h-14 border border-primary/30 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors rotate-45">
+                <contact.icon className="w-6 h-6 text-primary -rotate-45" />
+              </div>
+              <h4 className="text-xs font-mono font-bold text-gray-500 mb-2 uppercase tracking-widest">{contact.label}</h4>
+              <p className="text-white font-mono text-sm tracking-wide">{contact.value}</p>
             </motion.a>
           ))}
         </div>

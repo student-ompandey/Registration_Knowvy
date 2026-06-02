@@ -10,49 +10,49 @@ import {
 
 const faqs = [
   {
-    question: "Who can attend?",
-    answer: "This workshop is primarily designed for college students interested in modern web development. Whether you're a beginner or have some experience, you'll find immense value.",
+    question: "Is the event beginner friendly?",
+    answer: "Yes. Students, beginners, and experienced professionals are all welcome.",
   },
   {
     question: "Will certificates be provided?",
-    answer: "Yes, all participants who complete the workshop will receive a verifiable Certificate of Participation.",
+    answer: "Event organizers will share certificate details closer to the event.",
   },
   {
-    question: "Is prior experience required?",
-    answer: "Basic understanding of HTML, CSS, and JavaScript is recommended but not mandatory. We will cover core concepts from the ground up.",
+    question: "How can I register?",
+    answer: "You can register using the official registration link.",
   },
   {
-    question: "What should I bring?",
-    answer: "Just bring your laptop with a code editor (like VS Code) installed and a stable internet connection. A notebook for taking notes is also a good idea.",
-  },
-  {
-    question: "How will updates be communicated?",
-    answer: "All important updates, links, and resources will be sent via email to the address you provide during registration.",
+    question: "Who should attend?",
+    answer: "Students, developers, AI enthusiasts, founders, and technology professionals.",
   },
 ];
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-24 relative bg-card/30">
+    <section id="faq" className="py-24 relative bg-card/10 border-t border-dashed border-primary/20">
       <div className="container mx-auto px-6 md:px-12 max-w-3xl">
-        <div className="text-center mb-12">
-          <motion.h2
+        <div className="text-center mb-16">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-5xl font-bold mb-4"
+            className="flex items-center justify-center gap-4 mb-4"
           >
-            Frequently Asked Questions
-          </motion.h2>
+            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
+            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
+              FREQUENTLY_ASKED<span className="text-primary">_</span>
+            </h2>
+            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
+          </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400"
+            className="text-gray-400 font-sans"
           >
-            Everything you need to know about the workshop.
+            Query the database for common inquiries and system parameters.
           </motion.p>
         </div>
 
@@ -67,13 +67,16 @@ export function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-background border border-border px-6 py-2 rounded-xl"
+                className="bg-black/50 border border-primary/20 px-6 py-2 rounded-none data-[state=open]:border-primary transition-colors group"
               >
-                <AccordionTrigger className="text-left text-lg font-medium text-white hover:text-primary transition-colors">
-                  {faq.question}
+                <AccordionTrigger className="text-left text-lg font-mono font-medium text-white hover:text-primary hover:no-underline uppercase tracking-wide">
+                  <span className="flex items-center gap-3">
+                    <span className="text-primary/50 text-sm group-hover:text-primary transition-colors">[{String(index + 1).padStart(2, '0')}]</span>
+                    {faq.question}
+                  </span>
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-400 text-base leading-relaxed">
-                  {faq.answer}
+                <AccordionContent className="text-gray-400 text-base leading-relaxed font-sans border-t border-dashed border-primary/20 pt-4 mt-2">
+                  <span className="text-primary/70 mr-2">{">"}</span>{faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}

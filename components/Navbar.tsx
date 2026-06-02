@@ -38,10 +38,10 @@ export function Navbar() {
         {/* Logo Placeholder */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded bg-gradient-to-tr from-primary to-secondary flex items-center justify-center font-bold text-white">
-            TW
+            MB
           </div>
           <span className="font-bold text-xl tracking-tight text-white">
-            Workshop<span className="text-primary">26</span>
+            LocalHost<span className="text-primary">Bhopal</span>
           </span>
         </Link>
 
@@ -59,9 +59,11 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6">
-            Register Now
-          </Button>
+          <Link href="/register">
+            <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 transition-all duration-300 hover:shadow-[0_0_15px_rgba(var(--primary),0.5)]">
+              Register Now
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -89,9 +91,11 @@ export function Navbar() {
               </li>
             ))}
             <li className="pt-2">
-              <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-full">
-                Register Now
-              </Button>
+              <Link href="/register" className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(var(--primary),0.5)]">
+                  Register Now
+                </Button>
+              </Link>
             </li>
           </ul>
         </div>

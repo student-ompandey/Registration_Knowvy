@@ -1,72 +1,57 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, IndianRupee, Users } from "lucide-react";
+import { Calendar, IndianRupee, Users, Terminal } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#0B1020]" />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/30 blur-[120px]"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-[40%] -right-[10%] w-[40%] h-[60%] rounded-full bg-secondary/20 blur-[120px]"
-        />
-      </div>
-
-      {/* Floating Shapes */}
-      <motion.div
-        animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[25%] left-[15%] w-24 h-24 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 to-transparent backdrop-blur-sm hidden md:block"
-      />
-      <motion.div
-        animate={{ y: [0, 30, 0], rotate: [0, -15, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-[20%] right-[15%] w-32 h-32 rounded-full border border-secondary/20 bg-gradient-to-tr from-secondary/10 to-transparent backdrop-blur-sm hidden md:block"
-      />
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-background">
+      {/* Dark Tech Background Grid */}
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
+      
+      {/* Decorative lines */}
+      <div className="absolute top-1/4 left-0 w-32 h-[1px] bg-primary/50" />
+      <div className="absolute top-1/4 right-0 w-32 h-[1px] bg-primary/50" />
+      
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[1px] h-32 bg-gradient-to-b from-primary/50 to-transparent" />
 
       <div className="container relative z-10 px-6 md:px-12 mx-auto flex flex-col items-center text-center">
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8"
+          className="inline-flex items-center gap-2 mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-sm font-medium text-gray-300">Registration Open</span>
+          <span className="text-primary font-mono text-xs tracking-[0.3em] uppercase">
+            // Mission Briefing
+          </span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold tracking-tighter mb-4 leading-none uppercase flex flex-col items-center gap-2"
         >
-          Tech Workshop <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">2026</span>
+          <span className="text-white text-center">Microsoft Build:</span>
+          <span className="text-primary flex items-center gap-4 text-center mt-2">
+            <span className="h-[2px] w-8 md:w-12 bg-primary hidden md:block"></span>
+            LocalHost Bhopal 2026
+            <span className="h-[2px] w-8 md:w-12 bg-primary hidden md:block"></span>
+          </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-2xl text-gray-400 max-w-3xl mb-10"
+          className="text-lg md:text-xl text-gray-400 max-w-3xl mb-12 font-sans tracking-wide"
         >
-          Learn Industry Ready Skills, Build Real Projects, and Grow Your Network.
+          <strong className="text-white block mb-2">Moving Beyond the Prompt: Engineering Real-World AI Agents</strong>
+          Join developers, AI enthusiasts, students, founders, and technology professionals for a day of learning, networking, and innovation focused on Artificial Intelligence, AI Agents, Cloud Computing, and Modern Software Development.
         </motion.p>
 
         <motion.div
@@ -75,17 +60,29 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-wrap justify-center gap-6 mb-12"
         >
-          <div className="flex items-center gap-2 text-gray-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-md">
-            <Calendar className="text-primary w-5 h-5" />
-            <span>20 June 2026</span>
+          {/* Tech Stats Badges */}
+          <div className="relative group">
+            <div className="absolute -inset-0.5 bg-primary/50 blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div className="relative flex items-center gap-3 bg-card px-6 py-3 border border-border">
+              <Calendar className="text-primary w-5 h-5" />
+              <span className="font-mono text-sm uppercase tracking-wider text-gray-300">20 June 2026</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-gray-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-md">
-            <IndianRupee className="text-secondary w-5 h-5" />
-            <span>59 Only</span>
+          
+          <div className="relative group">
+            <div className="absolute -inset-0.5 bg-primary/50 blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div className="relative flex items-center gap-3 bg-card px-6 py-3 border border-border">
+              <Users className="text-primary w-5 h-5" />
+              <span className="font-mono text-sm uppercase tracking-wider text-gray-300">Early Bird Tickets Live</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-gray-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-md">
-            <Users className="text-blue-400 w-5 h-5" />
-            <span>Limited Seats Available</span>
+          
+          <div className="relative group">
+            <div className="absolute -inset-0.5 bg-primary/50 blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div className="relative flex items-center gap-3 bg-card px-6 py-3 border border-border">
+              <Terminal className="text-primary w-5 h-5" />
+              <span className="font-mono text-sm uppercase tracking-wider text-gray-300">Bhopal, MP</span>
+            </div>
           </div>
         </motion.div>
 
@@ -93,14 +90,19 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-14 text-lg">
-            Register Now
-          </Button>
-          <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-lg border-white/20 hover:bg-white/10 text-white bg-transparent">
-            Learn More
-          </Button>
+          <Link href="/register">
+            <Button size="lg" className="bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary rounded-none px-8 h-14 text-lg font-mono uppercase tracking-widest transition-all duration-300 w-full sm:w-auto">
+              <Terminal className="mr-2 w-5 h-5" />
+              Register Now
+            </Button>
+          </Link>
+          <a href="#schedule">
+            <Button size="lg" variant="outline" className="rounded-none px-8 h-14 text-lg border-border hover:border-primary hover:bg-transparent text-gray-400 hover:text-primary font-mono uppercase tracking-widest transition-all duration-300 bg-transparent w-full sm:w-auto">
+              View Schedule
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>
