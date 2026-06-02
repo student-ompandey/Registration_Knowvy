@@ -204,7 +204,8 @@ export function RegistrationSection() {
                 <div className="mb-4 inline-block bg-green-500/20 text-green-500 text-xs px-2 py-1 rounded border border-green-500/30">
                   Payment is mandatory to secure your spot
                 </div>
-                <ol className="text-sm text-gray-400 space-y-3 font-sans list-decimal list-inside marker:text-primary marker:font-mono">
+                <ol className="text-sm text-gray-400 space-y-3 font-sans list-decimal list-inside marker:text-primary marker:font-mono" start={0}>
+                  <li>Once the early bird tickets are over, the registration fee will be back to ₹99.</li>
                   <li>Pay ₹59 using any UPI app (GPay, PhonePe, Paytm).</li>
                   <li>Copy the unique 12-digit Transaction ID (UTR).</li>
                   <li>Enter the Transaction ID in the registration form to verify.</li>
