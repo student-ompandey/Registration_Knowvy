@@ -102,25 +102,25 @@ export function RegistrationSection() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="bg-black/80 backdrop-blur-2xl border border-green-500/40 p-12 rounded-2xl shadow-[0_0_60px_rgba(34,197,94,0.15)] relative overflow-hidden group"
+            className="bg-black/80 backdrop-blur-2xl border border-green-500/40 p-6 md:p-12 rounded-2xl shadow-[0_0_60px_rgba(34,197,94,0.15)] relative overflow-hidden group"
           >
             {/* Holographic scanning background line */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/10 to-transparent h-full w-full opacity-50 translate-y-[-100%] animate-[scan_3s_ease-in-out_infinite]"></div>
             
             <div className="relative z-10">
-              <div className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-8 relative">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-8 relative">
                 <div className="absolute inset-0 border-2 border-green-500/30 rounded-full animate-ping opacity-20"></div>
                 <div className="absolute inset-0 border border-green-500/50 rounded-full animate-[spin_4s_linear_infinite] border-t-transparent"></div>
-                <CheckCircle2 className="w-12 h-12 text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)]" />
+                <CheckCircle2 className="w-10 h-10 md:w-12 md:h-12 text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)]" />
               </div>
-              <h2 className="text-3xl font-mono font-bold text-white mb-6 tracking-wide drop-shadow-md">
+              <h2 className="text-2xl md:text-3xl font-mono font-bold text-white mb-6 tracking-wide drop-shadow-md">
                 AUTHORIZATION_GRANTED<span className="text-green-500 animate-pulse">_</span>
               </h2>
               
-              <div className="inline-block bg-green-950/40 border border-green-500/40 px-8 py-4 rounded-xl mb-8 relative overflow-hidden shadow-[0_0_20px_rgba(34,197,94,0.1)_inset]">
+              <div className="inline-block bg-green-950/40 border border-green-500/40 px-6 md:px-8 py-3 md:py-4 rounded-xl mb-8 relative overflow-hidden shadow-[0_0_20px_rgba(34,197,94,0.1)_inset] max-w-full">
                 <div className="absolute top-0 left-0 w-2 h-full bg-green-500"></div>
-                <p className="text-green-400/80 font-mono text-sm uppercase mb-1">Registration ID</p>
-                <p className="text-green-400 font-mono text-3xl font-bold tracking-widest">{regId}</p>
+                <p className="text-green-400/80 font-mono text-xs md:text-sm uppercase mb-1">Registration ID</p>
+                <p className="text-green-400 font-mono text-xl md:text-3xl font-bold tracking-widest break-words">{regId}</p>
               </div>
               
               <div className="space-y-4 mb-10 text-left bg-black/40 p-6 rounded-xl border border-white/5 font-mono text-sm">
@@ -153,11 +153,11 @@ export function RegistrationSection() {
   }
 
   return (
-    <section id="register" className="py-24 relative bg-background border-t border-dashed border-primary/20">
+    <section id="register" className="py-16 md:py-24 relative bg-background border-t border-dashed border-primary/20 overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-[80px] md:blur-[120px] -z-10" />
 
-      <div className="container mx-auto px-6 md:px-12 max-w-4xl relative z-10">
+      <div className="container mx-auto px-4 md:px-12 max-w-4xl relative z-10">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -168,12 +168,12 @@ export function RegistrationSection() {
             {/* Decorative background grid behind title */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] w-full h-full -z-10" />
             
-            <div className="flex items-center gap-4">
-              <div className="h-[2px] w-12 bg-gradient-to-r from-transparent to-primary/80"></div>
-              <h2 className="text-4xl md:text-6xl font-mono font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60 uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+            <div className="flex items-center gap-2 md:gap-4 w-full justify-center">
+              <div className="h-[2px] w-6 md:w-12 bg-gradient-to-r from-transparent to-primary/80"></div>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-mono font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60 uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] text-center break-words">
                 INITIALIZE_REG<span className="text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.8)]">_</span>
               </h2>
-              <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-primary/80"></div>
+              <div className="h-[2px] w-6 md:w-12 bg-gradient-to-l from-transparent to-primary/80"></div>
             </div>
           </motion.div>
           <p className="text-gray-400 text-lg font-sans max-w-2xl mx-auto relative z-10">
@@ -184,7 +184,7 @@ export function RegistrationSection() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Payment Section */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-black/60 backdrop-blur-xl border border-white/10 hover:border-primary/50 p-8 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] relative overflow-hidden group transition-all duration-500">
+            <div className="bg-black/60 backdrop-blur-xl border border-white/10 hover:border-primary/50 p-6 md:p-8 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] relative overflow-hidden group transition-all duration-500">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -283,12 +283,12 @@ export function RegistrationSection() {
 
           {/* Registration Form */}
           <div className="lg:col-span-3">
-            <div className="bg-black/60 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] relative">
+            <div className="bg-black/60 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] relative">
               <div className="absolute -inset-[1px] bg-gradient-to-b from-primary/20 to-transparent rounded-2xl z-0 pointer-events-none opacity-50"></div>
               
               <div className="relative z-10">
-                <h3 className="text-2xl font-mono font-bold text-white mb-8 uppercase flex items-center gap-4 tracking-wider">
-                  <span className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-sm border border-primary/40 shadow-[0_0_15px_rgba(var(--primary),0.3)]">02</span>
+                <h3 className="text-xl md:text-2xl font-mono font-bold text-white mb-6 md:mb-8 uppercase flex items-center gap-3 md:gap-4 tracking-wider">
+                  <span className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-sm border border-primary/40 shadow-[0_0_15px_rgba(var(--primary),0.3)]">02</span>
                   Operative Details
                 </h3>
 
