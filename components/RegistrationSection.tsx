@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, AlertCircle, Loader2, QrCode, Smartphone, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const GOOGLE_APPS_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfhH9FZFCXfOgqfewF6aA4mLUmGLWbvHYnWlOxFvmKWvyUeFqa78seOC-SFwp1Bvqp/exec";
 
 export function RegistrationSection() {
   const [formData, setFormData] = useState({
@@ -37,8 +37,13 @@ export function RegistrationSection() {
     setStatus("loading");
     setErrorMessage("");
 
-    // Generate unique Registration ID
-    const generatedRegId = `MB26-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+    // Generate unique readable Registration ID
+    const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+    let randomPart = '';
+    for (let i = 0; i < 6; i++) {
+      randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    const generatedRegId = `MB26-${randomPart}`;
 
     const payload = {
       regid: generatedRegId,
@@ -46,19 +51,31 @@ export function RegistrationSection() {
     };
 
     try {
-      // Send data to Google Apps Script
-      // Using no-cors as a fallback if the script isn't configured for standard CORS
-      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      console.log("Submitting to:", GOOGLE_SCRIPT_URL);
+      console.log("Payload:", payload);
+
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(payload as Record<string, string>).toString(),
+        // Do NOT use application/json here, it triggers a CORS preflight request that GAS blocks!
+        // Sending a string body automatically defaults to text/plain, which avoids the preflight.
+        body: JSON.stringify({
+          regid: payload.regid,
+          name: payload.name,
+          email: payload.email,
+          phone: payload.phone,
+          college: payload.college,
+          branch: payload.branch,
+          year: payload.year,
+          txnid: payload.txnid
+        })
       });
 
-      // If we use no-cors, response.ok is false and status is 0, so we just assume success if it didn't throw an error.
-      // But it's better if the script handles CORS properly. We'll assume success if it doesn't throw.
+      console.log("Response:", response);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       setRegId(generatedRegId);
       setStatus("success");
     } catch (error) {
@@ -88,9 +105,9 @@ export function RegistrationSection() {
             <p className="text-gray-400 font-sans mb-8">
               We have received your details. Please save your Transaction ID (<span className="text-white font-mono">{formData.txnid}</span>) for future reference. Our team will verify your payment and send a confirmation email shortly.
             </p>
-            <Button 
+            <Button
               onClick={() => window.location.href = '/'}
-              variant="outline" 
+              variant="outline"
               className="border-primary/50 text-primary hover:bg-primary/10"
             >
               Return to Home
@@ -130,10 +147,10 @@ export function RegistrationSection() {
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-black/40 backdrop-blur-md border border-white/10 p-8 rounded-xl shadow-xl relative overflow-hidden group hover:border-primary/50 transition-colors">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent"></div>
-              
+
               <h3 className="text-xl font-mono font-bold text-white mb-2 uppercase">Payment Protocol</h3>
               <p className="text-gray-400 text-sm mb-6">Complete your payment to verify registration.</p>
-              
+
               <div className="flex items-center justify-between bg-primary/10 border border-primary/20 p-4 rounded-lg mb-8">
                 <span className="text-gray-300 font-mono">Registration Fee</span>
                 <span className="text-3xl font-bold text-primary font-mono tracking-tighter">₹59</span>
@@ -154,7 +171,7 @@ export function RegistrationSection() {
                   <p className="text-xs text-gray-400 font-mono mb-2 uppercase">UPI ID</p>
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-white tracking-wide">your_upi_id@bank</span>
-                    <button 
+                    <button
                       onClick={() => copyToClipboard("your_upi_id@bank")}
                       className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-white"
                       title="Copy UPI ID"
@@ -169,10 +186,13 @@ export function RegistrationSection() {
                 <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider flex items-center gap-2">
                   <Smartphone className="w-4 h-4 text-primary" /> Instructions
                 </h4>
+                <div className="mb-4 inline-block bg-green-500/20 text-green-500 text-xs px-2 py-1 rounded border border-green-500/30">
+                  Payment is mandatory to secure your spot
+                </div>
                 <ol className="text-sm text-gray-400 space-y-3 font-sans list-decimal list-inside marker:text-primary marker:font-mono">
                   <li>Pay ₹59 using any UPI app (GPay, PhonePe, Paytm).</li>
                   <li>Copy the unique 12-digit Transaction ID (UTR).</li>
-                  <li>Enter the Transaction ID in the registration form.</li>
+                  <li>Enter the Transaction ID in the registration form to verify.</li>
                   <li>Submit the form to complete the protocol.</li>
                 </ol>
               </div>
@@ -209,7 +229,7 @@ export function RegistrationSection() {
                       placeholder="John Doe"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Email Address <span className="text-primary">*</span></label>
                     <input
@@ -290,12 +310,16 @@ export function RegistrationSection() {
 
                 <div className="pt-4 border-t border-white/10">
                   <div className="space-y-2">
-                    <label htmlFor="txnid" className="text-xs font-mono text-primary uppercase tracking-wider block">Transaction ID (UTR) <span className="text-white">*</span></label>
+                    <label htmlFor="txnid" className="text-xs font-mono text-primary uppercase tracking-wider block">Transaction ID (UTR) <span className="text-primary">*</span></label>
                     <input
                       type="text"
                       id="txnid"
                       name="txnid"
                       required
+                      minLength={12}
+                      maxLength={12}
+                      pattern="[0-9]{12}"
+                      title="Please enter a valid 12-digit UTR number"
                       value={formData.txnid}
                       onChange={handleInputChange}
                       className="w-full bg-primary/5 border border-primary/30 rounded-md px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-mono placeholder:text-gray-600"
@@ -304,8 +328,8 @@ export function RegistrationSection() {
                   </div>
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={status === "loading"}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-md h-14 text-lg font-mono uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(var(--primary),0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
                 >
