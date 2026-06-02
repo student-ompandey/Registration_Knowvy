@@ -67,13 +67,15 @@ export function ScheduleSection() {
               <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-12 border-t border-dashed border-primary/30 z-0 ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
 
               <div className={`w-full md:w-[calc(50%-3rem)] pl-12 md:pl-0 ${index % 2 === 0 ? "md:text-right" : "text-left"}`}>
-                <div className="bg-black/40 backdrop-blur-md border border-white/5 p-6 hover:border-primary/50 transition-all duration-300 group relative hover:shadow-[0_4px_30px_rgba(var(--primary),0.1)] rounded-sm">
-                  {/* Decorative corner */}
-                  <div className={`absolute top-0 w-3 h-3 border-t-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${index % 2 === 0 ? "right-0 border-r-2" : "left-0 border-l-2"}`}></div>
+                <div className="bg-black/60 backdrop-blur-xl border border-white/5 p-6 hover:border-primary/50 transition-all duration-300 group relative hover:shadow-[0_0_30px_rgba(var(--primary),0.15)] rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                   
-                  <div className={`flex flex-col ${index % 2 === 0 ? "md:items-end" : "md:items-start"}`}>
-                    <span className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary font-mono text-xs tracking-widest mb-4 rounded-full">{item.time}</span>
-                    <h3 className="text-xl font-mono font-bold text-white mb-2 uppercase tracking-wide group-hover:text-primary transition-colors duration-300">{item.title}</h3>
+                  {/* Decorative corner */}
+                  <div className={`absolute top-0 w-8 h-8 border-t-2 border-primary opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 ${index % 2 === 0 ? "right-0 border-r-2 rounded-tr-2xl" : "left-0 border-l-2 rounded-tl-2xl"}`}></div>
+                  
+                  <div className={`relative z-10 flex flex-col ${index % 2 === 0 ? "md:items-end" : "md:items-start"}`}>
+                    <span className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 text-primary font-mono text-xs tracking-widest mb-4 rounded-full shadow-[0_0_10px_rgba(var(--primary),0.2)]">{item.time}</span>
+                    <h3 className="text-xl font-mono font-bold text-white mb-2 uppercase tracking-wide group-hover:text-primary transition-colors duration-300 drop-shadow-sm">{item.title}</h3>
                     <p className="text-gray-400 text-sm font-sans leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
