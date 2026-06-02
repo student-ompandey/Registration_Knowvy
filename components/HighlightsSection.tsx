@@ -32,7 +32,7 @@ export function HighlightsSection() {
                 </h2>
               </div>
               <p className="text-gray-400 text-lg mb-8 font-sans">
-                Experience a transformative learning environment packed with modern techniques, expert insights, and interactive collaboration.
+                Experience a transformative hands-on workshop focused on building and deploying real-world AI applications using Microsoft and Azure technologies.
               </p>
               <div className="w-20 h-1 bg-primary/50" />
             </motion.div>

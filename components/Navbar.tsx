@@ -35,13 +35,10 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Logo Placeholder */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-gradient-to-tr from-primary to-secondary flex items-center justify-center font-bold text-white">
-            MB
-          </div>
+          <img src="/logo.png" alt="Microsoft Build Bhopal Logo" className="w-8 h-8 object-contain" />
           <span className="font-bold text-xl tracking-tight text-white">
-            LocalHost<span className="text-primary">Bhopal</span>
+            Microsoft Build <span className="text-primary">Bhopal</span>
           </span>
         </Link>
 

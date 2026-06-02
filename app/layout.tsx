@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Microsoft Build: LocalHost Bhopal 2026",
+  title: "Microsoft Build //localhost: Bhopal",
   description: "Moving Beyond the Prompt: Engineering Real-World AI Agents",
 };
 

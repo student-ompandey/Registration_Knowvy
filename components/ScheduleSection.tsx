@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 const schedule = [
   { time: "09:00 AM", title: "Registration & Check-In", desc: "Check-in, grab your badge, and morning networking." },
   { time: "10:00 AM", title: "Opening Keynote", desc: "Welcome address and event kickoff." },
-  { time: "10:30 AM", title: "Moving Beyond the Prompt: Engineering Real-World AI Agents", desc: "Core technical session on building and deploying AI agents." },
+  { time: "10:30 AM", title: "Moving Beyond the Prompt: Engineering Real-World AI Agents", desc: "Core technical session on building and deploying AI agents using Microsoft Copilot Studio and Azure OpenAI." },
   { time: "11:30 AM", title: "Building AI Applications with Azure", desc: "Cloud native development and Azure AI services." },
   { time: "12:30 PM", title: "Lunch & Networking", desc: "Refuel and connect with fellow developers." },
-  { time: "02:00 PM", title: "Hands-On AI Development Session", desc: "Practical session building real-world AI applications." },
+  { time: "02:00 PM", title: "Hands-On AI Development Session", desc: "Practical lab session building and deploying real-world AI applications on Microsoft Azure." },
   { time: "03:30 PM", title: "Community Talks", desc: "Insights from the developer community and tech leaders." },
   { time: "04:30 PM", title: "Panel Discussion", desc: "Expert discussion on the future of AI and software engineering." },
   { time: "05:30 PM", title: "Closing Session & Networking", desc: "Concluding remarks, feedback, and final networking." },

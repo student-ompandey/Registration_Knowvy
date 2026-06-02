@@ -11,7 +11,7 @@ const reasons = [
   },
   {
     title: "HANDS-ON KNOWLEDGE",
-    description: "Understand how real-world AI applications are built and deployed.",
+    description: "Understand how real-world AI applications are built and deployed on Azure.",
     icon: Laptop,
   },
   {
@@ -30,7 +30,7 @@ export function WhyAttendSection() {
   return (
     <section id="why-attend" className="py-24 relative z-10 bg-background border-t border-border/50">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-primary to-transparent" />
-      
+
       <div className="container mx-auto px-6 md:px-12">
         <div className="text-center mb-20 mt-12">
           <motion.div
@@ -53,14 +53,14 @@ export function WhyAttendSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-gray-400 max-w-2xl mx-auto text-lg font-sans"
           >
-            Microsoft Build: LocalHost Bhopal is a community-driven technology event designed to bring together developers, students, founders, and industry professionals. The event focuses on the future of AI, Cloud Computing, Large Language Models, Azure AI, Copilot technologies, and modern software engineering practices. Attendees will gain practical knowledge about building, deploying, and scaling real-world AI systems.
+            Microsoft Build //localhost: Bhopal is a community-driven technology event designed to bring together developers, students, founders, and industry professionals. The event focuses on the future of AI, Cloud Computing, Large Language Models, Azure AI, Copilot technologies, and modern software engineering practices. Attendees will gain practical knowledge about building, deploying, and scaling real-world AI systems.
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {/* Horizontal connecting line for desktop */}
           <div className="hidden lg:block absolute top-12 left-24 right-24 h-[1px] border-t border-dashed border-primary/30 -z-10" />
-          
+
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
@@ -76,7 +76,7 @@ export function WhyAttendSection() {
                 <div className="absolute inset-2 border border-primary/20 rotate-45"></div>
                 <reason.icon className="text-primary w-8 h-8 relative z-10 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              
+
               <h3 className="text-xl font-mono font-bold mb-3 text-white uppercase tracking-wider">{reason.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed font-sans px-4">
                 {reason.description}

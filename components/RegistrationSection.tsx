@@ -151,9 +151,24 @@ export function RegistrationSection() {
               <h3 className="text-xl font-mono font-bold text-white mb-2 uppercase">Payment Protocol</h3>
               <p className="text-gray-400 text-sm mb-6">Complete your payment to verify registration.</p>
 
-              <div className="flex items-center justify-between bg-primary/10 border border-primary/20 p-4 rounded-lg mb-8">
-                <span className="text-gray-300 font-mono">Registration Fee</span>
-                <span className="text-3xl font-bold text-primary font-mono tracking-tighter">₹59</span>
+              <div className="bg-primary/10 border border-primary/20 p-5 rounded-lg mb-8 space-y-4">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white font-mono text-sm font-semibold flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse"></span>
+                      Early Bird Tickets Live
+                    </span>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-sm text-gray-500 line-through font-mono">₹99</span>
+                      <span className="text-3xl font-bold text-primary font-mono tracking-tighter">₹59</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="border-t border-dashed border-white/10 pt-3 flex items-center justify-between text-xs text-gray-500 font-mono">
+                  <span>Regular Tickets</span>
+                  <span>₹99</span>
+                </div>
               </div>
 
               <div className="space-y-6">
@@ -344,6 +359,9 @@ export function RegistrationSection() {
                 <p className="text-center text-xs text-gray-500 font-sans mt-4">
                   By submitting, you agree to the event protocol and verify that the payment details are accurate.
                 </p>
+                <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded text-center text-xs text-gray-300 font-mono">
+                  <span className="text-primary font-bold">NOTE:</span> Once we receive your data and verify it, you will receive an email from our side with further details and information.
+                </div>
               </form>
             </div>
           </div>

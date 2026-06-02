@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Mail, Phone, Globe, MessageSquare, Terminal } from "lucide-react";
 
 const contacts = [
-  { icon: Globe, label: "ORGANIZER", value: "Knowvy Technologies", href: "https://knowvy.tech" },
+  { icon: Globe, label: "ORGANIZER", value: "Knowvy Technologies", href: "https://instagram.com/knowvy_technologies/" },
   { icon: Terminal, label: "REGISTRATION", value: "Official Link", href: "https://knowvy.tech/microsoft" },
-  { icon: MessageSquare, label: "COMMUNITY", value: "Join Network", href: "#" },
-  { icon: Mail, label: "CONTACT", value: "hello@knowvy.tech", href: "mailto:hello@knowvy.tech" },
+  { icon: MessageSquare, label: "COMMUNITY", value: "Join Network", href: "https://linktr.ee/knowvy_technologies" },
+  { icon: Mail, label: "CONTACT", value: "knowvy.tech@gmail.com", href: "mailto:knowvy.tech@gmail.com" },
 ];
 
 export function ContactSection() {

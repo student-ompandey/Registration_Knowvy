@@ -14,6 +14,10 @@ const faqs = [
     answer: "Yes. Students, beginners, and experienced professionals are all welcome.",
   },
   {
+    question: "What technology stack is focused in the workshop?",
+    answer: "The workshop focuses directly on Microsoft and Azure technologies, including Azure OpenAI, Azure AI Search, Microsoft Copilot Studio, and Azure cloud application deployment.",
+  },
+  {
     question: "Will certificates be provided?",
     answer: "Event organizers will share certificate details closer to the event.",
   },
@@ -23,7 +27,7 @@ const faqs = [
   },
   {
     question: "Who should attend?",
-    answer: "Students, developers, AI enthusiasts, founders, and technology professionals.",
+    answer: "Students, developers, AI enthusiasts, founders, and technology professionals interested in building real-world AI systems with Microsoft cloud suites.",
   },
 ];
 

@@ -68,7 +68,8 @@
 }
 
 /* Force dark theme globally */
-.dark, :root {
+.dark,
+:root {
   --background: #000000;
   --foreground: #E5E7EB;
   --card: #0A0A0A;
@@ -94,9 +95,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground bg-black;
   }
+
   html {
     @apply font-sans;
     scroll-behavior: smooth;

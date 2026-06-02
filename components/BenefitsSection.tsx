@@ -1,28 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, Users, TrendingUp, Code, FolderOpen, UserCheck } from "lucide-react";
+import { Award, Users, TrendingUp, Code, FolderOpen, Gift } from "lucide-react";
 
 const benefits = [
   {
     title: "SOFTWARE DEVELOPERS",
     icon: Code,
-    description: "Enhance your development workflow with AI agents and cloud native technologies.",
+    description: "Enhance your development workflow with Microsoft AI agents and Azure cloud-native technologies.",
   },
   {
     title: "STUDENTS & BEGINNERS",
     icon: Users,
-    description: "Learn industry-ready skills, build real projects, and network with professionals.",
+    description: "Learn industry-ready skills, build real projects on Azure, and network with professionals.",
   },
   {
     title: "STARTUP FOUNDERS",
     icon: TrendingUp,
-    description: "Discover how AI technologies and Azure can scale your product and business.",
+    description: "Discover how Microsoft AI technologies and Azure can scale your product and business.",
   },
   {
     title: "AI ENTHUSIASTS",
     icon: Award,
-    description: "Deep dive into Large Language Models, Copilot, and automation workflows.",
+    description: "Deep dive into Azure OpenAI, Microsoft Copilot, and advanced AI automation workflows.",
   },
   {
     title: "CLOUD PROFESSIONALS",
@@ -30,9 +30,9 @@ const benefits = [
     description: "Explore advanced deployment strategies and Azure AI services.",
   },
   {
-    title: "PRODUCT BUILDERS",
-    icon: UserCheck,
-    description: "Learn to build, deploy, and scale real-world AI applications efficiently.",
+    title: "FUEL & LOOT PROTOCOL",
+    icon: Gift,
+    description: "Brain processing requires calories. Refuel your local stomach processor with free lunch, and query the swag database to claim your official tech loot.",
   },
 ];
 
