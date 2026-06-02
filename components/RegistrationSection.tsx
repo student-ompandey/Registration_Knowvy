@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, AlertCircle, Loader2, QrCode, Smartphone, Copy } from "lucide-react";
+import { CheckCircle2, AlertCircle, Loader2, QrCode, Smartphone, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfhH9FZFCXfOgqfewF6aA4mLUmGLWbvHYnWlOxFvmKWvyUeFqa78seOC-SFwp1Bvqp/exec";
@@ -22,15 +22,30 @@ export function RegistrationSection() {
   const [errorMessage, setErrorMessage] = useState("");
   const [regId, setRegId] = useState("");
   const [qrError, setQrError] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [copyMessage, setCopyMessage] = useState("");
+  
+  const upiId = "omdwivedi478-3@okhdfcbank";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    alert("Copied to clipboard!");
+  const handleCopyUPI = async () => {
+    try {
+      await navigator.clipboard.writeText(upiId);
+      setCopied(true);
+      setCopyMessage("UPI ID copied successfully!");
+      setTimeout(() => {
+        setCopied(false);
+        setCopyMessage("");
+      }, 2000);
+    } catch (error) {
+      console.error("Copy failed:", error);
+      setCopyMessage("Failed to copy UPI ID. Please copy manually.");
+      setTimeout(() => setCopyMessage(""), 3000);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -228,9 +243,9 @@ export function RegistrationSection() {
                     {/* QR Code conditionally rendered */}
                     {!qrError ? (
                       <img 
-                        src="/qr image .jpeg" 
+                        src="/qrcode.jpeg" 
                         alt="UPI QR Code" 
-                        className="w-full h-full object-contain relative z-10 p-3 opacity-90 hover:opacity-100 transition-opacity" 
+                        className="w-full h-full object-cover relative z-10 opacity-90 hover:opacity-100 scale-125 hover:scale-[1.35] transition-all duration-500 cursor-zoom-in" 
                         onError={() => setQrError(true)}
                       />
                     ) : (
@@ -248,18 +263,31 @@ export function RegistrationSection() {
                   </div>
                 </div>
 
-                <div className="bg-black/50 p-4 rounded-lg border border-white/5">
+                <div className="bg-black/50 p-4 rounded-lg border border-white/5 relative">
                   <p className="text-xs text-gray-400 font-mono mb-2 uppercase">UPI ID</p>
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-mono text-white tracking-wide text-sm truncate">omdwivedi478-3@okhdfcbank</span>
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="font-mono text-white tracking-wide text-[13px] break-all select-all pt-1">
+                      {upiId}
+                    </span>
                     <button
-                      onClick={() => copyToClipboard("omdwivedi478-3@okhdfcbank")}
-                      className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-white shrink-0"
+                      onClick={handleCopyUPI}
+                      className="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 cursor-pointer shrink-0 border border-white/5 bg-white/5 hover:scale-105 hover:shadow-lg active:scale-95"
                       title="Copy UPI ID"
+                      aria-label="Copy UPI ID"
+                      type="button"
                     >
-                      <Copy className="w-4 h-4" />
+                      {copied ? (
+                        <Check className="w-4 h-4 text-green-500 scale-110 transition-transform" />
+                      ) : (
+                        <Copy className="w-4 h-4 text-gray-400 hover:text-white transition-colors" />
+                      )}
                     </button>
                   </div>
+                  {copyMessage && (
+                    <div className={`absolute -bottom-8 left-0 right-0 text-center text-[10px] font-mono ${copied ? 'text-green-500' : 'text-red-400'} animate-in fade-in slide-in-from-top-1`}>
+                      {copyMessage}
+                    </div>
+                  )}
                 </div>
               </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Laptop, MonitorPlay, Briefcase, Lightbulb } from "lucide-react";
+import { Laptop, MonitorPlay, Briefcase, Lightbulb, Coffee, Gift } from "lucide-react";
 
 const reasons = [
   {
@@ -24,6 +24,16 @@ const reasons = [
     description: "Discover opportunities in AI, cloud computing, and software engineering.",
     icon: MonitorPlay,
   },
+  {
+    title: "FREE FOOD & DRINKS",
+    description: "Enjoy complimentary meals and refreshments to keep your energy high throughout the event.",
+    icon: Coffee,
+  },
+  {
+    title: "EXCLUSIVE SWAG",
+    description: "Take home official event merchandise, stickers, and developer tools.",
+    icon: Gift,
+  },
 ];
 
 export function WhyAttendSection() {
@@ -42,7 +52,7 @@ export function WhyAttendSection() {
           >
             <div className="h-[1px] w-12 bg-primary/50"></div>
             <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
-              ABOUT_THE_EVENT<span className="text-primary">_</span>
+              WHY_ATTEND_THIS_EVENT<span className="text-primary">_</span>
             </h2>
             <div className="h-[1px] w-12 bg-primary/50"></div>
           </motion.div>
@@ -53,11 +63,11 @@ export function WhyAttendSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-gray-400 max-w-2xl mx-auto text-lg font-sans"
           >
-            Microsoft Build //localhost: Bhopal is a community-driven technology event designed to bring together developers, students, founders, and industry professionals. The event focuses on the future of AI, Cloud Computing, Large Language Models, Azure AI, Copilot technologies, and modern software engineering practices. Attendees will gain practical knowledge about building, deploying, and scaling real-world AI systems.
+            Microsoft Build //localhost: Bhopal is a community-driven technology event designed to bring together developers, students, founders, and industry professionals. The event focuses on the future of AI, Cloud Computing, Large Language Models, Azure AI, Copilot technologies, and modern software engineering practices.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 relative">
           {/* Horizontal connecting line for desktop */}
           <div className="hidden lg:block absolute top-12 left-24 right-24 h-[1px] border-t border-dashed border-primary/30 -z-10" />
 

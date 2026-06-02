@@ -30,9 +30,9 @@ const benefits = [
     description: "Explore advanced deployment strategies and Azure AI services.",
   },
   {
-    title: "FUEL & LOOT PROTOCOL",
+    title: "TECH LEADERS & INNOVATORS",
     icon: Gift,
-    description: "Brain processing requires calories. Refuel your local stomach processor with free lunch, and query the swag database to claim your official tech loot.",
+    description: "Discover new AI paradigms to drive innovation and lead technical teams into the era of AI automation.",
   },
 ];
 
