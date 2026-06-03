@@ -26,36 +26,41 @@ export function HighlightsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex items-center gap-4 mb-4">
-                <h2 className="text-3xl md:text-5xl font-mono font-bold uppercase tracking-tight">
-                  EVENT_OVERVIEW<span className="text-primary">_</span>
+              <div className="flex items-center gap-4 mb-6">
+                <h2 className="text-3xl md:text-5xl font-mono font-bold uppercase tracking-tight text-white drop-shadow-md">
+                  EVENT_OVERVIEW<span className="text-primary animate-pulse">_</span>
                 </h2>
               </div>
-              <p className="text-gray-400 text-lg mb-8 font-sans">
+              <p className="text-gray-400 text-lg mb-8 font-sans leading-relaxed">
                 Experience a transformative hands-on workshop focused on building and deploying real-world AI applications using Microsoft and Azure technologies.
               </p>
-              <div className="w-20 h-1 bg-primary/50" />
+              <div className="w-20 h-1 bg-gradient-to-r from-primary to-transparent" />
             </motion.div>
           </div>
           
-          <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
             {highlights.map((highlight, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-black/80 border border-primary/20 p-6 text-center group relative overflow-hidden"
+                className="relative group"
               >
-                {/* Tech corner accent */}
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary/0 group-hover:border-primary transition-colors duration-300"></div>
-                
-                <div className="w-12 h-12 mx-auto border border-primary/30 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors rotate-45">
-                  <highlight.icon className="w-5 h-5 text-primary -rotate-45" />
+                {/* Glowing Aura on Hover */}
+                <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/0 via-primary/20 to-primary/0 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+
+                <div className="relative bg-black/40 backdrop-blur-md border border-white/10 group-hover:border-primary/50 p-6 text-center rounded-xl h-full transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(var(--primary),0.15)] overflow-hidden">
+                  {/* Tech corner accents */}
+                  <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-primary/30 rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-primary/30 rounded-bl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="w-14 h-14 mx-auto border border-white/10 flex items-center justify-center mb-6 group-hover:bg-primary/10 group-hover:border-primary/50 transition-all duration-500 rotate-45 group-hover:rotate-[225deg] shadow-[0_0_10px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_15px_rgba(var(--primary),0.3)]">
+                    <highlight.icon className="w-6 h-6 text-gray-400 group-hover:text-primary -rotate-45 group-hover:rotate-180 transition-all duration-500" />
+                  </div>
+                  <h4 className="font-mono font-bold text-white text-xs md:text-sm uppercase tracking-wider group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">{highlight.title}</h4>
                 </div>
-                <h4 className="font-mono font-semibold text-white text-xs md:text-sm uppercase tracking-wider">{highlight.title}</h4>
               </motion.div>
             ))}
           </div>

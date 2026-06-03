@@ -30,19 +30,24 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-primary/20 bg-background pt-16 pb-8 relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] -z-10" />
+    <footer className="border-t border-white/5 bg-black pt-16 pb-8 relative overflow-hidden">
+      {/* Glowing top border */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+      
+      {/* Background glow */}
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] -z-10 rounded-full" />
+      <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 blur-[100px] -z-10 rounded-full" />
 
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <img src="/logo.png" alt="Microsoft Build Bhopal Logo" className="w-10 h-10 object-contain" />
-              <span className="font-mono font-bold text-2xl tracking-tighter text-white uppercase">
+              <img src="/logo.png" alt="Microsoft Build Bhopal Logo" className="w-10 h-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] group-hover:scale-105 transition-transform duration-300" />
+              <span className="font-serif font-bold text-2xl tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase">
                 Microsoft Build <span className="text-primary">Bhopal</span>
               </span>
             </Link>
-            <p className="text-gray-400 max-w-sm mb-6 font-sans">
+            <p className="text-gray-400 max-w-sm mb-6 font-sans leading-relaxed">
               Moving Beyond the Prompt: Engineering Real-World AI Agents with Microsoft and Azure technologies.
             </p>
           </div>

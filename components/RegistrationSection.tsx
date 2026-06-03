@@ -185,7 +185,7 @@ export function RegistrationSection() {
             
             <div className="flex items-center gap-2 md:gap-4 w-full justify-center">
               <div className="h-[2px] w-6 md:w-12 bg-gradient-to-r from-transparent to-primary/80"></div>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-mono font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60 uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] text-center break-words">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60 uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] text-center break-words">
                 INITIALIZE_REG<span className="text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.8)]">_</span>
               </h2>
               <div className="h-[2px] w-6 md:w-12 bg-gradient-to-l from-transparent to-primary/80"></div>

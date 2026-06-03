@@ -43,7 +43,7 @@ export default function TermsPage() {
               className="flex items-center justify-center gap-4 mb-4"
             >
               <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
-              <h1 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
+              <h1 className="text-3xl md:text-5xl font-serif font-bold tracking-tight text-white uppercase">
                 LEGAL_PROTOCOLS<span className="text-primary animate-pulse">_</span>
               </h1>
               <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
