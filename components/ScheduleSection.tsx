@@ -70,7 +70,7 @@ export function ScheduleSection() {
                 <div className="relative group/card h-full">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 rounded-2xl blur opacity-0 group-hover/card:opacity-100 transition duration-700"></div>
                   
-                  <div className="relative bg-black/60 backdrop-blur-xl border border-white/5 p-6 hover:border-primary/50 transition-all duration-300 group relative hover:shadow-[0_0_30px_rgba(var(--primary),0.15)] rounded-2xl overflow-hidden h-full hover:-translate-y-1">
+                  <div className="relative bg-black/60 backdrop-blur-xl border border-yellow-400/40 p-6 hover:border-yellow-400 transition-all duration-300 group relative shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] rounded-2xl overflow-hidden h-full hover:-translate-y-1">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                     
                     {/* Decorative corner */}

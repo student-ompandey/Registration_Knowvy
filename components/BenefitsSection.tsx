@@ -100,15 +100,15 @@ export function BenefitsSection() {
               {/* Glowing Aura on Hover */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-700"></div>
 
-              <div className="relative h-full bg-black/40 backdrop-blur-md border border-white/5 p-8 rounded-2xl hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] overflow-hidden flex flex-col justify-between">
+              <div className="relative h-full bg-black/40 backdrop-blur-md border border-yellow-400/40 p-8 rounded-2xl hover:border-yellow-400 transition-all duration-500 shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] overflow-hidden flex flex-col justify-between">
                 
                 {/* Subtle corner accents */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-primary/40 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-primary/40 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-yellow-400/40 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-yellow-400/40 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 
                 <div>
-                  <div className="w-14 h-14 flex items-center justify-center mb-8 border border-white/10 rotate-45 group-hover:bg-primary/10 group-hover:border-primary/50 transition-all duration-500 shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_20px_rgba(var(--primary),0.2)] group-hover:rotate-[225deg]">
-                    <benefit.icon className="text-gray-400 group-hover:text-primary w-6 h-6 -rotate-45 group-hover:rotate-180 transition-all duration-500" />
+                  <div className="w-14 h-14 flex items-center justify-center mb-8 border border-yellow-400/30 rotate-45 group-hover:bg-yellow-400/10 group-hover:border-yellow-400 transition-all duration-500 shadow-[0_0_10px_rgba(250,204,21,0.2)] group-hover:shadow-[0_0_20px_rgba(250,204,21,0.6)] group-hover:rotate-[225deg]">
+                    <benefit.icon className="text-gray-400 group-hover:text-yellow-400 w-6 h-6 -rotate-45 group-hover:rotate-180 transition-all duration-500" />
                   </div>
                   <h3 className="text-lg font-mono font-bold mb-3 text-white uppercase tracking-wide group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">{benefit.title}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed font-sans group-hover:text-gray-300 transition-colors duration-300">

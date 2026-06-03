@@ -24,7 +24,7 @@ export function RegistrationSection() {
   const [qrError, setQrError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyMessage, setCopyMessage] = useState("");
-  
+
   const upiId = "omdwivedi478-3@okhdfcbank";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -121,7 +121,7 @@ export function RegistrationSection() {
           >
             {/* Holographic scanning background line */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/10 to-transparent h-full w-full opacity-50 translate-y-[-100%] animate-[scan_3s_ease-in-out_infinite]"></div>
-            
+
             <div className="relative z-10">
               <div className="w-20 h-20 md:w-24 md:h-24 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-8 relative">
                 <div className="absolute inset-0 border-2 border-green-500/30 rounded-full animate-ping opacity-20"></div>
@@ -131,13 +131,13 @@ export function RegistrationSection() {
               <h2 className="text-2xl md:text-3xl font-mono font-bold text-white mb-6 tracking-wide drop-shadow-md">
                 AUTHORIZATION_GRANTED<span className="text-green-500 animate-pulse">_</span>
               </h2>
-              
+
               <div className="inline-block bg-green-950/40 border border-green-500/40 px-6 md:px-8 py-3 md:py-4 rounded-xl mb-8 relative overflow-hidden shadow-[0_0_20px_rgba(34,197,94,0.1)_inset] max-w-full">
                 <div className="absolute top-0 left-0 w-2 h-full bg-green-500"></div>
                 <p className="text-green-400/80 font-mono text-xs md:text-sm uppercase mb-1">Registration ID</p>
                 <p className="text-green-400 font-mono text-xl md:text-3xl font-bold tracking-widest break-words">{regId}</p>
               </div>
-              
+
               <div className="space-y-4 mb-10 text-left bg-black/40 p-6 rounded-xl border border-white/5 font-mono text-sm">
                 <div className="flex justify-between items-center border-b border-white/5 pb-2">
                   <span className="text-gray-500">Status</span>
@@ -182,11 +182,11 @@ export function RegistrationSection() {
           >
             {/* Decorative background grid behind title */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] w-full h-full -z-10" />
-            
+
             <div className="flex items-center gap-2 md:gap-4 w-full justify-center">
               <div className="h-[2px] w-6 md:w-12 bg-gradient-to-r from-transparent to-primary/80"></div>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60 uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] text-center break-words">
-                INITIALIZE_REG<span className="text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.8)]">_</span>
+                INITIALIZE_REGISTRATION<span className="text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.8)]">_</span>
               </h2>
               <div className="h-[2px] w-6 md:w-12 bg-gradient-to-l from-transparent to-primary/80"></div>
             </div>
@@ -219,7 +219,7 @@ export function RegistrationSection() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="border-t border-dashed border-white/10 pt-3 flex items-center justify-between text-xs text-gray-500 font-mono">
                   <span>Regular Tickets</span>
                   <span>₹99</span>
@@ -229,7 +229,7 @@ export function RegistrationSection() {
               <div className="space-y-6">
                 <div className="flex flex-col items-center justify-center p-8 bg-black/40 border border-white/5 rounded-2xl relative overflow-hidden group">
                   <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
+
                   {/* Cyberpunk corner accents */}
                   <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/40 rounded-tl-lg"></div>
                   <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary/40 rounded-tr-lg"></div>
@@ -239,19 +239,19 @@ export function RegistrationSection() {
                   <div className="w-48 h-48 bg-white/5 rounded-xl flex items-center justify-center mb-6 relative overflow-hidden shadow-[0_0_30px_rgba(var(--primary),0.1)]">
                     {/* QR Code Image */}
                     <div className="absolute inset-2 border-2 border-primary/30 border-dashed rounded-lg opacity-50 z-0"></div>
-                    
+
                     {/* QR Code conditionally rendered */}
                     {!qrError ? (
-                      <img 
-                        src="/qrcode.jpeg" 
-                        alt="UPI QR Code" 
-                        className="w-full h-full object-cover relative z-10 opacity-90 hover:opacity-100 scale-125 hover:scale-[1.35] transition-all duration-500 cursor-zoom-in" 
+                      <img
+                        src="/qrcode.jpeg"
+                        alt="UPI QR Code"
+                        className="w-full h-full object-cover relative z-10 opacity-90 hover:opacity-100 scale-125 hover:scale-[1.35] transition-all duration-500 cursor-zoom-in"
                         onError={() => setQrError(true)}
                       />
                     ) : (
                       <QrCode className="w-20 h-20 text-primary/40 group-hover:text-primary transition-colors duration-500 relative z-10" />
                     )}
-                    
+
                     {/* Advanced Scanning Line */}
                     <div className="absolute inset-0 border-2 border-primary/20 rounded-xl pointer-events-none group-hover:border-primary/50 transition-colors z-20"></div>
                     <div className="absolute top-0 left-0 w-full h-[3px] bg-primary shadow-[0_0_15px_var(--primary)] animate-[scan_2.5s_ease-in-out_infinite] z-20"></div>
@@ -313,160 +313,160 @@ export function RegistrationSection() {
           <div className="lg:col-span-3">
             <div className="bg-black/60 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] relative">
               <div className="absolute -inset-[1px] bg-gradient-to-b from-primary/20 to-transparent rounded-2xl z-0 pointer-events-none opacity-50"></div>
-              
+
               <div className="relative z-10">
                 <h3 className="text-xl md:text-2xl font-mono font-bold text-white mb-6 md:mb-8 uppercase flex items-center gap-3 md:gap-4 tracking-wider">
                   <span className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-sm border border-primary/40 shadow-[0_0_15px_rgba(var(--primary),0.3)]">02</span>
                   Operative Details
                 </h3>
 
-              {status === "error" && (
-                <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-lg flex items-start gap-3">
-                  <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                  <p className="text-red-200 text-sm">{errorMessage}</p>
-                </div>
-              )}
+                {status === "error" && (
+                  <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-lg flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+                    <p className="text-red-200 text-sm">{errorMessage}</p>
+                  </div>
+                )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Full Name <span className="text-primary">*</span></label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
-                      placeholder="John Doe"
-                    />
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Full Name <span className="text-primary">*</span></label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
+                        placeholder="John Doe"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Email Address <span className="text-primary">*</span></label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="phone" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Mobile Number <span className="text-primary">*</span></label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                        pattern="[0-9]{10}"
+                        title="Please enter a valid 10-digit mobile number"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
+                        placeholder="9876543210"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="college" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">College Name <span className="text-primary">*</span></label>
+                      <input
+                        type="text"
+                        id="college"
+                        name="college"
+                        required
+                        value={formData.college}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
+                        placeholder="Your Institute Name"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="branch" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Branch <span className="text-primary">*</span></label>
+                      <input
+                        type="text"
+                        id="branch"
+                        name="branch"
+                        required
+                        value={formData.branch}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
+                        placeholder="Computer Science, etc."
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="year" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Year <span className="text-primary">*</span></label>
+                      <select
+                        id="year"
+                        name="year"
+                        required
+                        value={formData.year}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm appearance-none"
+                      >
+                        <option value="" disabled className="bg-gray-900 text-white">Select Year</option>
+                        <option value="1st Year" className="bg-gray-900 text-white">1st Year</option>
+                        <option value="2nd Year" className="bg-gray-900 text-white">2nd Year</option>
+                        <option value="3rd Year" className="bg-gray-900 text-white">3rd Year</option>
+                        <option value="4th Year" className="bg-gray-900 text-white">4th Year</option>
+                        <option value="Graduated/Professional" className="bg-gray-900 text-white">Graduated / Professional</option>
+                      </select>
+                    </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Email Address <span className="text-primary">*</span></label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
-                      placeholder="john@example.com"
-                    />
+                  <div className="pt-4 border-t border-white/10">
+                    <div className="space-y-2">
+                      <label htmlFor="txnid" className="text-xs font-mono text-primary uppercase tracking-wider block">Transaction ID (UTR) <span className="text-primary">*</span></label>
+                      <input
+                        type="text"
+                        id="txnid"
+                        name="txnid"
+                        required
+                        minLength={12}
+                        maxLength={12}
+                        pattern="[0-9]{12}"
+                        title="Please enter a valid 12-digit UTR number"
+                        value={formData.txnid}
+                        onChange={handleInputChange}
+                        className="w-full bg-primary/5 border border-primary/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all duration-300 font-mono placeholder:text-gray-600 shadow-[0_0_15px_rgba(var(--primary),0.1)_inset]"
+                        placeholder="Enter 12-digit UTR Number"
+                      />
+                    </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Mobile Number <span className="text-primary">*</span></label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      pattern="[0-9]{10}"
-                      title="Please enter a valid 10-digit mobile number"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
-                      placeholder="9876543210"
-                    />
-                  </div>
+                  <Button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full relative group overflow-hidden bg-primary/10 border border-primary/50 hover:border-primary text-white rounded-xl h-16 text-lg font-mono uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
+                  >
+                    <div className="absolute inset-0 w-0 bg-primary group-hover:w-full transition-all duration-500 ease-out z-0"></div>
+                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] bg-[position:200%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] group-hover:bg-[position:-200%_0,0_0] group-hover:duration-[1500ms]"></div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="college" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">College Name <span className="text-primary">*</span></label>
-                    <input
-                      type="text"
-                      id="college"
-                      name="college"
-                      required
-                      value={formData.college}
-                      onChange={handleInputChange}
-                      className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
-                      placeholder="Your Institute Name"
-                    />
+                    <span className="relative z-10 flex items-center gap-3">
+                      {status === "loading" ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" /> Transmitting...
+                        </>
+                      ) : (
+                        "Submit Registration"
+                      )}
+                    </span>
+                  </Button>
+                  <p className="text-center text-xs text-gray-500 font-sans mt-6">
+                    By submitting, you agree to the event protocol and verify that the payment details are accurate.
+                  </p>
+                  <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-xl text-center text-xs text-gray-300 font-mono shadow-inner">
+                    <span className="text-primary font-bold">NOTE:</span> Once we receive your data and verify it, you will receive an email from our side with further details and information.
                   </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="branch" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Branch <span className="text-primary">*</span></label>
-                    <input
-                      type="text"
-                      id="branch"
-                      name="branch"
-                      required
-                      value={formData.branch}
-                      onChange={handleInputChange}
-                      className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
-                      placeholder="Computer Science, etc."
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="year" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Year <span className="text-primary">*</span></label>
-                    <select
-                      id="year"
-                      name="year"
-                      required
-                      value={formData.year}
-                      onChange={handleInputChange}
-                      className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm appearance-none"
-                    >
-                      <option value="" disabled className="bg-gray-900 text-white">Select Year</option>
-                      <option value="1st Year" className="bg-gray-900 text-white">1st Year</option>
-                      <option value="2nd Year" className="bg-gray-900 text-white">2nd Year</option>
-                      <option value="3rd Year" className="bg-gray-900 text-white">3rd Year</option>
-                      <option value="4th Year" className="bg-gray-900 text-white">4th Year</option>
-                      <option value="Graduated/Professional" className="bg-gray-900 text-white">Graduated / Professional</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-white/10">
-                  <div className="space-y-2">
-                    <label htmlFor="txnid" className="text-xs font-mono text-primary uppercase tracking-wider block">Transaction ID (UTR) <span className="text-primary">*</span></label>
-                    <input
-                      type="text"
-                      id="txnid"
-                      name="txnid"
-                      required
-                      minLength={12}
-                      maxLength={12}
-                      pattern="[0-9]{12}"
-                      title="Please enter a valid 12-digit UTR number"
-                      value={formData.txnid}
-                      onChange={handleInputChange}
-                      className="w-full bg-primary/5 border border-primary/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all duration-300 font-mono placeholder:text-gray-600 shadow-[0_0_15px_rgba(var(--primary),0.1)_inset]"
-                      placeholder="Enter 12-digit UTR Number"
-                    />
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="w-full relative group overflow-hidden bg-primary/10 border border-primary/50 hover:border-primary text-white rounded-xl h-16 text-lg font-mono uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
-                >
-                  <div className="absolute inset-0 w-0 bg-primary group-hover:w-full transition-all duration-500 ease-out z-0"></div>
-                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] bg-[position:200%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] group-hover:bg-[position:-200%_0,0_0] group-hover:duration-[1500ms]"></div>
-                  
-                  <span className="relative z-10 flex items-center gap-3">
-                    {status === "loading" ? (
-                      <>
-                        <Loader2 className="w-5 h-5 animate-spin" /> Transmitting...
-                      </>
-                    ) : (
-                      "Submit Registration"
-                    )}
-                  </span>
-                </Button>
-                <p className="text-center text-xs text-gray-500 font-sans mt-6">
-                  By submitting, you agree to the event protocol and verify that the payment details are accurate.
-                </p>
-                <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-xl text-center text-xs text-gray-300 font-mono shadow-inner">
-                  <span className="text-primary font-bold">NOTE:</span> Once we receive your data and verify it, you will receive an email from our side with further details and information.
-                </div>
-              </form>
-            </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>

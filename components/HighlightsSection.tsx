@@ -51,13 +51,13 @@ export function HighlightsSection() {
                 {/* Glowing Aura on Hover */}
                 <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/0 via-primary/20 to-primary/0 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
-                <div className="relative bg-black/40 backdrop-blur-md border border-white/10 group-hover:border-primary/50 p-6 text-center rounded-xl h-full transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(var(--primary),0.15)] overflow-hidden">
+                <div className="relative bg-black/40 backdrop-blur-md border border-yellow-400/40 group-hover:border-yellow-400 p-6 text-center rounded-xl h-full transition-all duration-500 hover:-translate-y-2 shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] overflow-hidden">
                   {/* Tech corner accents */}
-                  <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-primary/30 rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-primary/30 rounded-bl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-yellow-400/30 rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-yellow-400/30 rounded-bl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <div className="w-14 h-14 mx-auto border border-white/10 flex items-center justify-center mb-6 group-hover:bg-primary/10 group-hover:border-primary/50 transition-all duration-500 rotate-45 group-hover:rotate-[225deg] shadow-[0_0_10px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_15px_rgba(var(--primary),0.3)]">
-                    <highlight.icon className="w-6 h-6 text-gray-400 group-hover:text-primary -rotate-45 group-hover:rotate-180 transition-all duration-500" />
+                  <div className="w-14 h-14 mx-auto border border-yellow-400/30 flex items-center justify-center mb-6 group-hover:bg-yellow-400/10 group-hover:border-yellow-400 transition-all duration-500 rotate-45 group-hover:rotate-[225deg] shadow-[0_0_10px_rgba(250,204,21,0.2)] group-hover:shadow-[0_0_20px_rgba(250,204,21,0.6)]">
+                    <highlight.icon className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 -rotate-45 group-hover:rotate-180 transition-all duration-500" />
                   </div>
                   <h4 className="font-mono font-bold text-white text-xs md:text-sm uppercase tracking-wider group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">{highlight.title}</h4>
                 </div>

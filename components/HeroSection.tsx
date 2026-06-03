@@ -116,10 +116,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-8 font-mono text-sm text-gray-500 tracking-wider bg-black/40 border border-white/5 backdrop-blur-sm px-6 py-2 rounded-full inline-flex items-center gap-2"
+          className="mt-8 font-mono text-sm text-gray-500 tracking-wider bg-black/40 border border-yellow-400/50 shadow-[0_0_15px_rgba(250,204,21,0.4)] hover:shadow-[0_0_25px_rgba(250,204,21,0.8)] hover:border-yellow-400 backdrop-blur-sm px-6 py-2 rounded-full inline-flex items-center gap-2 transition-all duration-300"
         >
           <span className="text-primary animate-pulse">📍</span>
-          <span className="text-gray-400">Venue:</span>
+          <span className="text-yellow-400">Venue:</span>
           <span className="text-white font-semibold">Sharma Computer Academy, Bhopal</span>
         </motion.p>
       </div>

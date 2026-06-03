@@ -51,13 +51,13 @@ export function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-black/50 border border-border p-6 flex flex-col items-center text-center group hover:border-primary/50 transition-all relative overflow-hidden"
+              className="bg-black/50 border border-yellow-400/40 p-6 flex flex-col items-center text-center group hover:border-yellow-400 transition-all relative overflow-hidden shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] duration-500"
             >
               <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <Terminal className="w-4 h-4 text-primary/50" />
               </div>
-              <div className="w-14 h-14 border border-primary/30 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors rotate-45">
-                <contact.icon className="w-6 h-6 text-primary -rotate-45" />
+              <div className="w-14 h-14 border border-yellow-400/30 flex items-center justify-center mb-4 group-hover:bg-yellow-400/20 transition-all rotate-45 shadow-[0_0_10px_rgba(250,204,21,0.2)] group-hover:shadow-[0_0_20px_rgba(250,204,21,0.6)] group-hover:border-yellow-400">
+                <contact.icon className="w-6 h-6 text-yellow-400 -rotate-45" />
               </div>
               <h4 className="text-xs font-mono font-bold text-gray-500 mb-2 uppercase tracking-widest">{contact.label}</h4>
               <p className="text-white font-mono text-sm tracking-wide">{contact.value}</p>

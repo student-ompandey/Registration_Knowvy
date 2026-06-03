@@ -82,18 +82,18 @@ export function WhyAttendSection() {
             >
               {/* Glowing Aura on Hover */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-700"></div>
-              
-              <div className="relative flex flex-col items-center text-center bg-black/40 backdrop-blur-md border border-white/5 group-hover:border-primary/50 rounded-2xl p-8 h-full transition-all duration-500 hover:shadow-[0_0_30px_rgba(var(--primary),0.15)] hover:-translate-y-2">
-                
+
+              <div className="relative flex flex-col items-center text-center bg-black/40 backdrop-blur-md border border-yellow-400/40 group-hover:border-yellow-400 rounded-2xl p-8 h-full transition-all duration-500 shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] hover:-translate-y-2">
+
                 {/* Decorative corner accents */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-primary/30 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-primary/30 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-yellow-400/30 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-yellow-400/30 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 {/* Diamond Icon Container */}
                 <div className="relative w-20 h-20 mb-8 flex items-center justify-center">
-                  <div className="absolute inset-0 border border-white/10 rotate-45 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-500 group-hover:rotate-[225deg] shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_20px_rgba(var(--primary),0.3)]"></div>
-                  <div className="absolute inset-2 border border-white/5 rotate-45 group-hover:border-primary/50 transition-all duration-500 group-hover:-rotate-45"></div>
-                  <reason.icon className="text-gray-400 group-hover:text-primary w-8 h-8 relative z-10 group-hover:scale-110 transition-all duration-500" />
+                  <div className="absolute inset-0 border border-yellow-400/30 rotate-45 group-hover:border-yellow-400 group-hover:bg-yellow-400/10 transition-all duration-500 group-hover:rotate-[225deg] shadow-[0_0_10px_rgba(250,204,21,0.2)] group-hover:shadow-[0_0_20px_rgba(250,204,21,0.6)]"></div>
+                  <div className="absolute inset-2 border border-yellow-400/10 rotate-45 group-hover:border-yellow-400/50 transition-all duration-500 group-hover:-rotate-45"></div>
+                  <reason.icon className="text-gray-400 group-hover:text-yellow-400 w-8 h-8 relative z-10 group-hover:scale-110 transition-all duration-500" />
                 </div>
 
                 <h3 className="text-xl font-mono font-bold mb-4 text-white uppercase tracking-wider group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">{reason.title}</h3>
