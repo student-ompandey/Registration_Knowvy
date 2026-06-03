@@ -104,6 +104,17 @@ export function HeroSection() {
             </Button>
           </a>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-6 font-mono text-sm text-gray-500 tracking-wider"
+        >
+          <span className="text-primary">📍</span>{" "}
+          <span className="text-yellow-400">Venue:</span>{" "}
+          <span className="text-white font-semibold">Sharma Computer Academy, Bhopal</span>
+        </motion.p>
       </div>
     </section>
   );
