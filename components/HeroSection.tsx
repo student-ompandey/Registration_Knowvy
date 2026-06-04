@@ -83,6 +83,14 @@ export function HeroSection() {
             </div>
           </div>
 
+          <Link href="/register" className="relative group cursor-pointer">
+            <div className="absolute -inset-0.5 bg-yellow-500/50 blur opacity-80 group-hover:opacity-100 transition duration-500 animate-pulse rounded-xl"></div>
+            <div className="relative flex items-center gap-3 bg-yellow-500/10 backdrop-blur-md px-6 py-3 border border-yellow-500/50 rounded-xl hover:bg-yellow-500/20 transition-all duration-300">
+              <IndianRupee className="text-yellow-400 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+              <span className="font-mono text-sm uppercase tracking-wider text-white font-bold shadow-black drop-shadow-md">Refer & Earn</span>
+            </div>
+          </Link>
+
           <div className="relative group">
             <div className="absolute -inset-0.5 bg-primary/20 blur opacity-0 group-hover:opacity-100 transition duration-500 rounded-xl"></div>
             <div className="relative flex items-center gap-3 bg-black/60 backdrop-blur-md px-6 py-3 border border-white/10 rounded-xl group-hover:border-primary/50 transition-colors duration-300">
