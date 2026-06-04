@@ -27,7 +27,7 @@ export function PartnersSection() {
           </div>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
           {/* Knowvy Technologies Card */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -101,6 +101,45 @@ export function PartnersSection() {
                 </span>
                 <span className="text-xs font-mono text-primary/80 tracking-[0.2em] uppercase font-medium">
                   Innovation Partner
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Scalive Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.5, type: "spring", stiffness: 100 }}
+            className="relative group cursor-default"
+          >
+            {/* Animated Glow Behind */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-700 opacity-40 group-hover:opacity-80"></div>
+            
+            <div className="relative flex flex-col items-center text-center p-8 bg-black/80 backdrop-blur-md border border-yellow-400/40 rounded-2xl group-hover:border-yellow-400 transition-all duration-500 gap-6 shadow-[0_0_15px_rgba(250,204,21,0.3)] group-hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] overflow-hidden h-full">
+              
+              {/* Corner Accents */}
+              <div className="absolute top-0 left-0 w-6 h-6 border-t-[1px] border-l-[1px] border-primary/60 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div className="absolute bottom-0 right-0 w-6 h-6 border-b-[1px] border-r-[1px] border-primary/60 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+              {/* Logo */}
+              <div className="relative w-32 h-20 sm:w-40 sm:h-24 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-500 transform group-hover:scale-105">
+                <Image 
+                  src="/scalive.png" 
+                  alt="Scalive Venue Partner" 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
+              
+              {/* Text Content */}
+              <div className="flex flex-col items-center space-y-1">
+                <span className="text-xl sm:text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-500 tracking-wide uppercase group-hover:to-gray-300 transition-all duration-500">
+                  Scalive
+                </span>
+                <span className="text-xs font-mono text-primary/80 tracking-[0.2em] uppercase font-medium">
+                  Venue Partner
                 </span>
               </div>
             </div>

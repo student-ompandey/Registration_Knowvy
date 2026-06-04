@@ -3,15 +3,15 @@
 import { motion } from "framer-motion";
 
 const schedule = [
-  { time: "09:00 AM", title: "Registration & Check-In", desc: "Check-in, grab your badge, and morning networking." },
-  { time: "10:00 AM", title: "Opening Keynote", desc: "Welcome address and event kickoff." },
+  { time: "10:00 AM", title: "Registration & Check-In", desc: "Check-in, grab your badge, and morning networking." },
+  { time: "10:15 AM", title: "Opening Keynote", desc: "Welcome address and event kickoff." },
   { time: "10:30 AM", title: "Moving Beyond the Prompt: Engineering Real-World AI Agents", desc: "Core technical session on building and deploying AI agents using Microsoft Copilot Studio and Azure OpenAI." },
   { time: "11:30 AM", title: "Building AI Applications with Azure", desc: "Cloud native development and Azure AI services." },
   { time: "12:30 PM", title: "Lunch & Networking", desc: "Refuel and connect with fellow developers." },
-  { time: "02:00 PM", title: "Hands-On AI Development Session", desc: "Practical lab session building and deploying real-world AI applications on Microsoft Azure." },
-  { time: "03:30 PM", title: "Community Talks", desc: "Insights from the developer community and tech leaders." },
-  { time: "04:30 PM", title: "Panel Discussion", desc: "Expert discussion on the future of AI and software engineering." },
-  { time: "05:30 PM", title: "Closing Session & Networking", desc: "Concluding remarks, feedback, and final networking." },
+  { time: "01:00 PM", title: "Hands-On AI Development Session", desc: "Practical lab session building and deploying real-world AI applications on Microsoft Azure." },
+  { time: "02:00 PM", title: "Community Talks", desc: "Insights from the developer community and tech leaders." },
+  { time: "02:30 PM", title: "Panel Discussion", desc: "Expert discussion on the future of AI and software engineering." },
+  { time: "02:45 PM", title: "Closing Session & Networking", desc: "Concluding remarks, feedback, and final networking." },
 ];
 
 export function ScheduleSection() {
@@ -56,26 +56,25 @@ export function ScheduleSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`relative flex flex-col md:flex-row items-center mb-16 ${
-                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
-              }`}
+              className={`relative flex flex-col md:flex-row items-center mb-16 ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+                }`}
             >
               {/* Timeline dot with glowing effect */}
               <div className="absolute left-[15px] md:left-1/2 w-3 h-3 bg-background border-2 border-primary rounded-full z-10 shadow-[0_0_10px_rgba(var(--primary),0.8)] -translate-x-1/2" />
-              
+
               {/* Connecting line to the card */}
               <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-12 border-t border-dashed border-primary/30 z-0 ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
 
               <div className={`w-full md:w-[calc(50%-3rem)] pl-12 md:pl-0 ${index % 2 === 0 ? "md:text-right" : "text-left"}`}>
                 <div className="relative group/card h-full">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 rounded-2xl blur opacity-0 group-hover/card:opacity-100 transition duration-700"></div>
-                  
+
                   <div className="relative bg-black/60 backdrop-blur-xl border border-yellow-400/40 p-6 hover:border-yellow-400 transition-all duration-300 group relative shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] rounded-2xl overflow-hidden h-full hover:-translate-y-1">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    
+
                     {/* Decorative corner */}
                     <div className={`absolute top-0 w-8 h-8 border-t-2 border-primary opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 ${index % 2 === 0 ? "right-0 border-r-2 rounded-tr-2xl" : "left-0 border-l-2 rounded-tl-2xl"}`}></div>
-                    
+
                     <div className={`relative z-10 flex flex-col ${index % 2 === 0 ? "md:items-end" : "md:items-start"}`}>
                       <span className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 text-primary font-mono text-xs tracking-widest mb-4 rounded-full shadow-[0_0_10px_rgba(var(--primary),0.2)]">{item.time}</span>
                       <h3 className="text-xl font-mono font-bold text-white mb-2 uppercase tracking-wide group-hover:text-primary transition-colors duration-300 drop-shadow-sm">{item.title}</h3>

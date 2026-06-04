@@ -71,7 +71,7 @@ export function HeroSection() {
             <div className="absolute -inset-0.5 bg-primary/20 blur opacity-0 group-hover:opacity-100 transition duration-500 rounded-xl"></div>
             <div className="relative flex items-center gap-3 bg-black/60 backdrop-blur-md px-6 py-3 border border-white/10 rounded-xl group-hover:border-primary/50 transition-colors duration-300">
               <Calendar className="text-primary w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-              <span className="font-mono text-sm uppercase tracking-wider text-gray-300 group-hover:text-white transition-colors duration-300">20 June 2026</span>
+              <span className="font-mono text-sm uppercase tracking-wider text-gray-300 group-hover:text-white transition-colors duration-300">10:00am, 20 June 2026</span>
             </div>
           </div>
 
