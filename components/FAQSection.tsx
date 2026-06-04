@@ -29,6 +29,10 @@ const faqs = [
     question: "Who should attend?",
     answer: "Students, developers, AI enthusiasts, founders, and technology professionals interested in building real-world AI systems with Microsoft cloud suites.",
   },
+  {
+    question: "How does the referral system work?",
+    answer: "When you register, your mobile number becomes your referral code. Share this code with your friends. If 7 or more people register using your referral code, your entire registration fee will be refunded! Plus, the top referrers with the maximum referrals will be rewarded with extra cash prizes and exclusive event rewards!",
+  },
 ];
 
 export function FAQSection() {

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, AlertCircle, Loader2, QrCode, Smartphone, Copy, Check } from "lucide-react";
+import { CheckCircle2, AlertCircle, Loader2, QrCode, Smartphone, Copy, Check, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfhH9FZFCXfOgqfewF6aA4mLUmGLWbvHYnWlOxFvmKWvyUeFqa78seOC-SFwp1Bvqp/exec";
@@ -16,6 +16,7 @@ export function RegistrationSection() {
     branch: "",
     year: "",
     txnid: "",
+    referredBy: "",
   });
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -24,12 +25,30 @@ export function RegistrationSection() {
   const [qrError, setQrError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyMessage, setCopyMessage] = useState("");
+  const [copiedRef, setCopiedRef] = useState(false);
+  const [copyRefMessage, setCopyRefMessage] = useState("");
 
   const upiId = "omdwivedi478-3@okhdfcbank";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCopyReferral = async () => {
+    try {
+      await navigator.clipboard.writeText(formData.phone);
+      setCopiedRef(true);
+      setCopyRefMessage("Referral code copied successfully");
+      setTimeout(() => {
+        setCopiedRef(false);
+        setCopyRefMessage("");
+      }, 2000);
+    } catch (error) {
+      console.error("Copy failed:", error);
+      setCopyRefMessage("Failed to copy referral code.");
+      setTimeout(() => setCopyRefMessage(""), 3000);
+    }
   };
 
   const handleCopyUPI = async () => {
@@ -58,6 +77,12 @@ export function RegistrationSection() {
     if (!utrRegex.test(formData.txnid)) {
       setStatus("error");
       setErrorMessage("Strict Protocol Error: A valid 12-digit UTR Transaction ID is strictly required to verify payment. Registration cannot proceed without it.");
+      return;
+    }
+
+    if (formData.referredBy && !/^[0-9]{10}$/.test(formData.referredBy)) {
+      setStatus("error");
+      setErrorMessage("Invalid Referral Code: If entered, the referral code must be a valid 10-digit mobile number.");
       return;
     }
 
@@ -90,7 +115,8 @@ export function RegistrationSection() {
           college: payload.college,
           branch: payload.branch,
           year: payload.year,
-          txnid: payload.txnid
+          txnid: payload.txnid,
+          referredBy: payload.referredBy
         })
       });
 
@@ -136,6 +162,34 @@ export function RegistrationSection() {
                 <div className="absolute top-0 left-0 w-2 h-full bg-green-500"></div>
                 <p className="text-green-400/80 font-mono text-xs md:text-sm uppercase mb-1">Registration ID</p>
                 <p className="text-green-400 font-mono text-xl md:text-3xl font-bold tracking-widest break-words">{regId}</p>
+              </div>
+
+              <div className="inline-block bg-green-950/40 border border-green-500/40 px-6 md:px-8 py-3 md:py-4 rounded-xl mb-8 relative overflow-hidden shadow-[0_0_20px_rgba(34,197,94,0.1)_inset] max-w-full w-full">
+                <div className="absolute top-0 left-0 w-2 h-full bg-green-500"></div>
+                <p className="text-green-400/80 font-mono text-xs md:text-sm uppercase mb-1 text-left">Your Referral Code</p>
+                <div className="flex items-center justify-between gap-4 mt-1">
+                  <p className="text-green-400 font-mono text-xl md:text-3xl font-bold tracking-widest break-words">{formData.phone}</p>
+                  <button
+                    onClick={handleCopyReferral}
+                    className="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 cursor-pointer shrink-0 border border-white/5 bg-white/5 hover:scale-105 active:scale-95"
+                    title="Copy Referral Code"
+                    aria-label="Copy Referral Code"
+                  >
+                    {copiedRef ? (
+                      <Check className="w-5 h-5 text-green-500 scale-110 transition-transform" />
+                    ) : (
+                      <Copy className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+                    )}
+                  </button>
+                </div>
+                {copyRefMessage && (
+                  <p className={`text-left text-xs font-mono mt-2 ${copiedRef ? 'text-green-500' : 'text-red-400'} animate-in fade-in`}>
+                    {copyRefMessage}
+                  </p>
+                )}
+                <p className="text-left text-xs text-gray-400 mt-2 font-sans">
+                  Share this number with your friends and ask them to enter it during registration.
+                </p>
               </div>
 
               <div className="space-y-4 mb-10 text-left bg-black/40 p-6 rounded-xl border border-white/5 font-mono text-sm">
@@ -422,6 +476,22 @@ export function RegistrationSection() {
                   </div>
 
                   <div className="pt-4 border-t border-white/10">
+                    <div className="space-y-2 mb-6">
+                      <label htmlFor="referredBy" className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Referral Code (Optional)</label>
+                      <input
+                        type="tel"
+                        id="referredBy"
+                        name="referredBy"
+                        minLength={10}
+                        maxLength={10}
+                        pattern="[0-9]{10}"
+                        title="If entered, please provide a valid 10-digit mobile number"
+                        value={formData.referredBy}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-primary/70 focus:ring-2 focus:ring-primary/20 focus:bg-primary/5 transition-all duration-300 font-sans shadow-inner backdrop-blur-sm"
+                        placeholder="Enter your friend's mobile number"
+                      />
+                    </div>
                     <div className="space-y-2">
                       <label htmlFor="txnid" className="text-xs font-mono text-primary uppercase tracking-wider block">Transaction ID (UTR) <span className="text-primary">*</span></label>
                       <input
@@ -464,6 +534,23 @@ export function RegistrationSection() {
                   </p>
                   <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-xl text-center text-xs text-gray-300 font-mono shadow-inner">
                     <span className="text-primary font-bold">NOTE:</span> Once we receive your data and verify it, you will receive an email from our side with further details and information.
+                  </div>
+
+                  {/* Referral Highlight Banner */}
+                  <div className="mt-8 p-5 bg-gradient-to-br from-primary/20 to-transparent border border-primary/50 rounded-xl relative overflow-hidden group shadow-[0_0_20px_rgba(var(--primary),0.1)]">
+                    <div className="absolute top-1/2 -translate-y-1/2 right-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+                      <Gift className="w-20 h-20 text-primary" />
+                    </div>
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        <h4 className="text-primary font-mono font-bold uppercase tracking-widest text-sm">Referral Protocol Active</h4>
+                      </div>
+                      <p className="text-white text-base md:text-lg font-bold mb-2 pr-4">Invite 7+ Members = 100% Refund + Extra Rewards!</p>
+                      <p className="text-gray-400 text-sm font-sans max-w-[85%]">
+                        Use your registered mobile number as your referral code. If 7 or more people use it during registration, your entry fee will be fully refunded along with exclusive event perks.
+                      </p>
+                    </div>
                   </div>
                 </form>
               </div>
