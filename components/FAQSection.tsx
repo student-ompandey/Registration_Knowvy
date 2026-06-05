@@ -29,6 +29,10 @@ const faqs = [
     question: "Who should attend?",
     answer: "Students, developers, AI enthusiasts, founders, and technology professionals interested in building real-world AI systems with Microsoft cloud suites.",
   },
+  {
+    question: "How to become a community partner?",
+    answer: "Simply send an email to knowvy.tech@gmail.com expressing your interest. Include details about your community, social media links, and how you would like to collaborate. Our team will get back to you shortly!",
+  },
 ];
 
 export function FAQSection() {
