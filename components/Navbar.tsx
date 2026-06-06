@@ -18,12 +18,13 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#why-attend" },
-    { name: "Benefits", href: "#benefits" },
-    { name: "Schedule", href: "#schedule" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/#why-attend" },
+    { name: "Benefits", href: "/#benefits" },
+    { name: "Schedule", href: "/#schedule" },
+    { name: "FAQ", href: "/#faq" },
+    { name: "Contact", href: "/#contact" },
+    { name: "Partners", href: "/community-partners" },
     { name: "Refer", href: "/register" },
   ];
 

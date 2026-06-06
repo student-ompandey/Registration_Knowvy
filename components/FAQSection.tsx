@@ -33,6 +33,10 @@ const faqs = [
     question: "How does the referral system work?",
     answer: "When you register, your mobile number becomes your referral code. Share this code with your friends. If 7 or more people register using your referral code, your entire registration fee will be refunded! Plus, the top referrers with the maximum referrals will be rewarded with extra cash prizes and exclusive event rewards!",
   },
+  {
+    question: "How to become a community partner?",
+    answer: "Simply send an email to knowvy.tech@gmail.com expressing your interest. Include details about your community, social media links, and how you would like to collaborate. Our team will get back to you shortly!",
+  },
 ];
 
 export function FAQSection() {
