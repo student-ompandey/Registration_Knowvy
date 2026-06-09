@@ -265,18 +265,12 @@ export function RegistrationSection() {
                   <div className="flex items-center justify-between">
                     <span className="text-white font-mono text-sm font-semibold flex items-center gap-2">
                       <span className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse"></span>
-                      Early Bird Tickets Live
+                      Tickets Live
                     </span>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-sm text-gray-500 line-through font-mono">₹99</span>
-                      <span className="text-3xl font-bold text-primary font-mono tracking-tighter">₹59</span>
+                      <span className="text-3xl font-bold text-primary font-mono tracking-tighter">₹99</span>
                     </div>
                   </div>
-                </div>
-
-                <div className="border-t border-dashed border-white/10 pt-3 flex items-center justify-between text-xs text-gray-500 font-mono">
-                  <span>Regular Tickets</span>
-                  <span>₹99</span>
                 </div>
               </div>
 
@@ -297,7 +291,7 @@ export function RegistrationSection() {
                     {/* QR Code conditionally rendered */}
                     {!qrError ? (
                       <img
-                        src="/qrcode.jpeg"
+                        src="/qrcode_99.jpeg"
                         alt="UPI QR Code"
                         className="w-full h-full object-cover relative z-10 opacity-90 hover:opacity-100 scale-125 hover:scale-[1.35] transition-all duration-500 cursor-zoom-in"
                         onError={() => setQrError(true)}
@@ -352,9 +346,8 @@ export function RegistrationSection() {
                 <div className="mb-4 inline-block bg-green-500/20 text-green-500 text-xs px-2 py-1 rounded border border-green-500/30">
                   Payment is mandatory to secure your spot
                 </div>
-                <ol className="text-sm text-gray-400 space-y-3 font-sans list-decimal list-inside marker:text-primary marker:font-mono" start={0}>
-                  <li>Once the early bird tickets are over, the registration fee will be back to ₹99.</li>
-                  <li>Pay ₹59 using any UPI app (GPay, PhonePe, Paytm).</li>
+                <ol className="text-sm text-gray-400 space-y-3 font-sans list-decimal list-inside marker:text-primary marker:font-mono" start={1}>
+                  <li>Pay ₹99 using any UPI app (GPay, PhonePe, Paytm).</li>
                   <li>Copy the unique 12-digit Transaction ID (UTR).</li>
                   <li>Enter the Transaction ID in the registration form to verify.</li>
                   <li>Submit the form to complete the protocol.</li>

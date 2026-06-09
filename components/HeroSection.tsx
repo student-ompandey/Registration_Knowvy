@@ -79,7 +79,7 @@ export function HeroSection() {
             <div className="absolute -inset-0.5 bg-primary/40 blur opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse rounded-xl"></div>
             <div className="relative flex items-center gap-3 bg-primary/10 backdrop-blur-md px-6 py-3 border border-primary/50 rounded-xl">
               <Users className="text-primary w-5 h-5" />
-              <span className="font-mono text-sm uppercase tracking-wider text-white font-semibold shadow-black drop-shadow-md">Early Bird Tickets Live</span>
+              <span className="font-mono text-sm uppercase tracking-wider text-white font-semibold shadow-black drop-shadow-md">Tickets are live</span>
             </div>
           </div>
 

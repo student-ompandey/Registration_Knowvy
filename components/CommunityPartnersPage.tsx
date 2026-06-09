@@ -38,6 +38,7 @@ interface Partner {
   linkedin?: string;
   twitter?: string;
   featured: boolean;
+  role?: string;
 }
 
 const partnersData: Partner[] = [
@@ -49,6 +50,7 @@ const partnersData: Partner[] = [
     instagram: "https://www.instagram.com/knowvy_technologies/",
     linkedin: "https://www.linkedin.com/company/knowvy/?",
     featured: true,
+    role: "Organizer",
   },
   {
     id: "vexite",
@@ -58,6 +60,16 @@ const partnersData: Partner[] = [
     instagram: "https://www.instagram.com/vexitestudio/",
     linkedin: "https://www.linkedin.com/company/vexite-studio/",
     featured: true,
+    role: "Innovation Partner",
+  },
+  {
+    id: "scalive",
+    name: "Scalive",
+    logo: "/scalive.png",
+    description: "Premium venue spaces for modern technology events.",
+    instagram: "https://www.instagram.com/scalive.in/",
+    featured: false,
+    role: "Venue Partner",
   },
   {
     id: "web3_bhopal",
@@ -68,10 +80,19 @@ const partnersData: Partner[] = [
     featured: false,
   },
   {
-    id: "scalive",
-    name: "Scalive",
-    logo: "/scalive.png",
-    description: "Premium venue spaces for modern technology events.",
+    id: "builder_base",
+    name: "Builder Base",
+    logo: "/builder_base.png",
+    description: "Building a strong ecosystem for builders, developers, and creators.",
+    twitter: "https://x.com/theBuilder_base",
+    featured: false,
+  },
+  {
+    id: "code_crate",
+    name: "Code Crate",
+    logo: "/code_crate.jpg",
+    description: "A community-driven platform focused on coding, sharing knowledge, and building together.",
+    instagram: "https://www.instagram.com/code._crate/",
     featured: false,
   }
 ];
@@ -99,29 +120,29 @@ export function CommunityPartnersPage() {
         >
           {/* Decorative Elements */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-full bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
-          
+
           <div className="inline-flex items-center gap-3 mb-8 px-5 py-2.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md shadow-[0_0_20px_rgba(250,204,21,0.15)]">
             <span className="h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_rgba(250,204,21,0.8)]"></span>
             <span className="text-primary font-mono text-xs tracking-[0.3em] uppercase font-bold">
               The Ecosystem
             </span>
           </div>
-          
+
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight mb-8 leading-[1.1]">
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-gray-600 drop-shadow-sm">
               Community Partners
             </span>
           </h1>
-          
+
           <p className="text-lg md:text-xl text-gray-400 font-sans max-w-2xl mx-auto leading-relaxed mb-12">
             Proudly supported by leading student communities, developer groups, startups, and innovation ecosystems helping us build a stronger tech community in Bhopal.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a href="#featured" className="px-8 py-4 bg-primary text-black font-bold font-mono uppercase tracking-wider rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]">
               View Partners
             </a>
-            <button 
+            <button
               onClick={() => setIsPopupOpen(true)}
               className="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold font-mono uppercase tracking-wider rounded-full hover:bg-white/10 hover:border-primary/50 hover:scale-105 active:scale-95 transition-all text-center"
             >
@@ -173,14 +194,14 @@ export function CommunityPartnersPage() {
               className="group relative flex flex-col items-center text-center p-10 bg-black/80 backdrop-blur-2xl border border-white/10 hover:border-primary/50 rounded-[2.5rem] transition-all duration-500 shadow-xl hover:shadow-[0_0_50px_rgba(250,204,21,0.2)] overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-              
+
               <div className="relative w-48 h-32 mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:scale-110 transition-transform duration-500">
                 <Image src={partner.logo} alt={partner.name} fill className="object-contain" />
               </div>
-              
+
               <h3 className="text-2xl font-serif font-bold text-white mb-4">{partner.name}</h3>
               <p className="text-gray-400 mb-8 font-sans leading-relaxed">{partner.description}</p>
-              
+
               <div className="mt-auto flex flex-col items-center gap-6 relative z-10">
                 <div className="flex gap-4">
                   {partner.instagram && (
@@ -199,7 +220,7 @@ export function CommunityPartnersPage() {
                     </Link>
                   )}
                 </div>
-                
+
                 <Link href={partner.linkedin || partner.twitter || partner.instagram || "#"} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-mono text-black bg-primary px-8 py-3 rounded-full hover:bg-primary/90 transition-all uppercase tracking-wider font-bold shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] hover:scale-105 active:scale-95 group/link">
                   Visit Community
                   <ArrowRight size={18} className="group-hover/link:translate-x-1.5 transition-transform" />
@@ -236,12 +257,12 @@ export function CommunityPartnersPage() {
               <div className="relative w-32 h-20 mb-6 group-hover:scale-110 transition-transform duration-500">
                 <Image src={partner.logo} alt={partner.name} fill className="object-contain" />
               </div>
-              
+
               <h3 className="text-lg font-serif font-bold text-white text-center mb-2">{partner.name}</h3>
               <span className="text-xs font-mono text-primary/70 uppercase tracking-widest mb-6">
-                Community Partner
+                {partner.role || "Community Partner"}
               </span>
-              
+
               <div className="mt-auto flex gap-3 pt-4 border-t border-white/10 w-full justify-center relative z-10">
                 {partner.instagram && (
                   <Link href={partner.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
@@ -275,7 +296,7 @@ export function CommunityPartnersPage() {
         >
           {/* Animated Glow Behind */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 z-0" />
-          
+
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 tracking-tight">
               Become a Community Partner
@@ -283,8 +304,8 @@ export function CommunityPartnersPage() {
             <p className="text-lg text-gray-400 font-sans max-w-2xl mx-auto mb-10 leading-relaxed">
               Want to support the event and connect with developers, students, founders, and tech enthusiasts? Email us directly at <span className="text-white font-bold">knowvy.tech@gmail.com</span> to join us in making this event an unforgettable experience.
             </p>
-            
-            <button 
+
+            <button
               onClick={() => setIsPopupOpen(true)}
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-black font-semibold rounded-full hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(250,204,21,0.4)]"
             >
@@ -304,27 +325,27 @@ export function CommunityPartnersPage() {
             className="relative w-full max-w-lg bg-gray-900 border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20" />
-            
+
             <button
               onClick={() => setIsPopupOpen(false)}
               className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors"
             >
               <X size={20} />
             </button>
-            
+
             <div className="mb-8">
               <h3 className="text-3xl font-serif font-bold text-white mb-3">Partner With Us</h3>
               <p className="text-gray-400 font-sans leading-relaxed">
                 We're excited to collaborate! To become a community partner, please send an email to the address below with your community details.
               </p>
             </div>
-            
+
             <div className="bg-black/50 border border-primary/30 p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 relative overflow-hidden">
               <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
               <span className="text-primary font-mono text-lg font-bold tracking-wide relative z-10 break-all">
                 knowvy.tech@gmail.com
               </span>
-              <a 
+              <a
                 href="mailto:knowvy.tech@gmail.com?subject=Partnership%20Inquiry:%20Community%20Partner&body=Hi%20Team,%0A%0AI%20would%20love%20to%20collaborate%20and%20become%20a%20Community%20Partner%20for%20the%20event!%0A%0ACommunity%20Name:%20%0ASocial%20Media%20Links:%20%0A%0ALooking%20forward%20to%20joining%20the%20ecosystem!"
                 className="px-5 py-2.5 bg-primary/10 text-primary hover:bg-primary hover:text-black rounded-xl text-sm font-bold transition-all relative z-10 active:scale-95 whitespace-nowrap"
               >
