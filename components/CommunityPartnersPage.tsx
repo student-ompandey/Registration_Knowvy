@@ -94,6 +94,14 @@ const partnersData: Partner[] = [
     description: "A community-driven platform focused on coding, sharing knowledge, and building together.",
     instagram: "https://www.instagram.com/code._crate/",
     featured: false,
+  },
+  {
+    id: "mlsa_ggits",
+    name: "MLSA - GGITS",
+    logo: "/mlsa_ggits.jpg",
+    description: "Microsoft Learn Student Ambassadors Campus Club at GGITS, fostering learning, collaboration, and tech innovation.",
+    instagram: "https://www.instagram.com/mccggits/",
+    featured: false,
   }
 ];
 
