@@ -25,7 +25,7 @@ export function Navbar() {
     { name: "FAQ", href: "/#faq" },
     { name: "Contact", href: "/#contact" },
     { name: "Partners", href: "/community-partners" },
-    { name: "Refer", href: "/register" },
+    { name: "Registrations Closed", href: "/register" },
   ];
 
   return (
@@ -66,8 +66,8 @@ export function Navbar() {
             ))}
           </ul>
           <Link href="/register">
-            <Button className="bg-primary/10 hover:bg-primary border border-primary/50 hover:border-primary text-primary hover:text-black font-mono uppercase tracking-widest rounded-xl px-8 h-11 transition-all duration-500 hover:shadow-[0_0_20px_rgba(var(--primary),0.4)] backdrop-blur-sm">
-              Register Now
+            <Button className="bg-red-500/10 hover:bg-red-500 border border-red-500/50 hover:border-red-500 text-red-500 hover:text-black font-mono uppercase tracking-widest rounded-xl px-8 h-11 transition-all duration-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] backdrop-blur-sm">
+              Closed
             </Button>
           </Link>
         </div>
@@ -98,8 +98,8 @@ export function Navbar() {
             ))}
             <li className="pt-4">
               <Link href="/register" className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full bg-primary hover:bg-primary/90 text-black font-mono font-bold uppercase tracking-widest rounded-xl h-12 transition-all duration-300 shadow-[0_0_15px_rgba(var(--primary),0.3)]">
-                  Register Now
+                <Button className="w-full bg-red-500 hover:bg-red-600 text-white font-mono font-bold uppercase tracking-widest rounded-xl h-12 transition-all duration-300 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+                  Closed
                 </Button>
               </Link>
             </li>

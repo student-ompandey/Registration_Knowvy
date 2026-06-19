@@ -76,10 +76,10 @@ export function HeroSection() {
           </div>
 
           <div className="relative group">
-            <div className="absolute -inset-0.5 bg-primary/40 blur opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse rounded-xl"></div>
-            <div className="relative flex items-center gap-3 bg-primary/10 backdrop-blur-md px-6 py-3 border border-primary/50 rounded-xl">
-              <Users className="text-primary w-5 h-5" />
-              <span className="font-mono text-sm uppercase tracking-wider text-white font-semibold shadow-black drop-shadow-md">Tickets are live</span>
+            <div className="absolute -inset-0.5 bg-red-500/40 blur opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse rounded-xl"></div>
+            <div className="relative flex items-center gap-3 bg-red-500/10 backdrop-blur-md px-6 py-3 border border-red-500/50 rounded-xl">
+              <Users className="text-red-500 w-5 h-5" />
+              <span className="font-mono text-sm uppercase tracking-wider text-white font-semibold shadow-black drop-shadow-md">Registration Closed</span>
             </div>
           </div>
 
@@ -107,10 +107,10 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
           <Link href="/register">
-            <Button size="lg" className="relative group bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 hover:border-primary rounded-xl px-8 h-14 text-lg font-mono uppercase tracking-widest transition-all duration-500 w-full sm:w-auto overflow-hidden backdrop-blur-sm shadow-[0_0_15px_rgba(var(--primary),0.1)] hover:shadow-[0_0_30px_rgba(var(--primary),0.4)]">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite]"></div>
+            <Button size="lg" className="relative group bg-red-500/10 hover:bg-red-500 hover:text-black text-red-500 border border-red-500/50 hover:border-red-500 rounded-xl px-8 h-14 text-lg font-mono uppercase tracking-widest transition-all duration-500 w-full sm:w-auto overflow-hidden backdrop-blur-sm shadow-[0_0_15px_rgba(239,68,68,0.1)] hover:shadow-[0_0_30px_rgba(239,68,68,0.4)]">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/20 to-red-500/0 translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite]"></div>
               <Terminal className="mr-2 w-5 h-5 relative z-10" />
-              <span className="relative z-10">Register Now</span>
+              <span className="relative z-10">Registration Closed</span>
             </Button>
           </Link>
           <a href="#schedule">

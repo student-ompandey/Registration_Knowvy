@@ -30,6 +30,49 @@ export function RegistrationSection() {
 
   const upiId = "omdwivedi478-3@okhdfcbank";
 
+  return (
+    <section id="register" className="py-20 md:py-24 relative bg-background border-t border-dashed border-primary/20 overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[760px] md:h-[760px] bg-red-500/5 rounded-full blur-[90px] md:blur-[140px] -z-10" />
+
+      <div className="container mx-auto px-4 md:px-12 max-w-4xl relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-14 text-center shadow-[0_0_40px_rgba(0,0,0,0.45)] relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(239,68,68,0.12),_transparent_55%)] pointer-events-none" />
+          <div className="relative z-10 flex flex-col items-center gap-6">
+            <div className="w-20 h-20 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center">
+              <AlertCircle className="w-10 h-10 text-red-500" />
+            </div>
+
+            <div className="space-y-4 max-w-2xl">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold tracking-tighter text-white uppercase">
+                Registrations Closed
+              </h2>
+              <p className="text-gray-400 text-base md:text-lg font-sans leading-relaxed">
+                Registration for this event is no longer open. The form, payment QR code, and submission flow have been disabled.
+              </p>
+            </div>
+
+            <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.25em] text-gray-300">
+              Signups are currently unavailable
+            </div>
+
+            <Button
+              onClick={() => window.location.href = "/"}
+              variant="outline"
+              className="h-12 rounded-xl border-red-500/40 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-black font-mono uppercase tracking-widest px-8 transition-all duration-300"
+            >
+              Return Home
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -265,7 +308,7 @@ export function RegistrationSection() {
                   <div className="flex items-center justify-between">
                     <span className="text-white font-mono text-sm font-semibold flex items-center gap-2">
                       <span className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse"></span>
-                      Tickets Live
+                      Registrations CLOSED
                     </span>
                     <div className="flex items-baseline gap-2">
                       <span className="text-3xl font-bold text-primary font-mono tracking-tighter">₹99</span>
