@@ -2,110 +2,153 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, Sun, Moon, ArrowRight, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const NAV_LINKS = [
+  { name: "About", href: "#about" },
+  { name: "What We Do", href: "#what-we-do" },
+  { name: "Past Events", href: "#past-events" },
+  { name: "Gallery", href: "#gallery" },
+  { name: "Team", href: "#team" },
+  { name: "Milestones", href: "#achievements" },
+  { name: "Join Us", href: "#join" },
+  { name: "Contact", href: "#contact" },
+];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    const savedTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+    setTheme(savedTheme);
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 40);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/#why-attend" },
-    { name: "Benefits", href: "/#benefits" },
-    { name: "Schedule", href: "/#schedule" },
-    { name: "FAQ", href: "/#faq" },
-    { name: "Contact", href: "/#contact" },
-    { name: "Partners", href: "/community-partners" },
-    { name: "Registrations Closed", href: "/register" },
-  ];
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    document.documentElement.classList.add("theme-transition-active");
+    document.documentElement.classList.toggle("dark", next === "dark");
+    localStorage.setItem("theme", next);
+    setTheme(next);
+    setTimeout(() => document.documentElement.classList.remove("theme-transition-active"), 500);
+  };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? "bg-black/60 backdrop-blur-xl border-b border-white/10 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-        : "bg-transparent py-6"
-        }`}
-    >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-hover:scale-110">
-            <img src="/logo.png" alt="Microsoft Build Bhopal Logo" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
+    <header className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-4 select-none">
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`flex items-center justify-between border rounded-full px-6 py-2.5 transition-all duration-300 ${scrolled
+          ? "bg-background/90 border-primary/30 backdrop-blur-xl shadow-[0_12px_40px_rgba(6,182,212,0.15)] dark:bg-black/90"
+          : "bg-background/80 border-border backdrop-blur-md shadow-lg dark:bg-black/80 dark:border-white/10 dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)]"
+          }`}
+      >
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center bg-gradient-to-tr from-primary via-[#06b6d4] to-accent shadow-[0_0_15px_rgba(6,182,212,0.4)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+            <span className="font-mono text-white text-sm font-black">K</span>
           </div>
-          <div className="flex flex-col">
-            <span className="font-serif font-bold text-lg md:text-xl tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
-              Microsoft Build
-            </span>
-            <span className="font-mono text-[10px] md:text-xs text-primary uppercase tracking-[0.2em] -mt-1">
-              //localhost: Bhopal
-            </span>
+          <div className="flex items-center gap-1.5 font-mono text-xs font-bold text-foreground tracking-wider">
+            <span>KNOWVY</span>
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-10">
-          <ul className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="text-sm font-mono text-gray-400 hover:text-white uppercase tracking-widest transition-colors duration-300 relative group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link href="/register">
-            <Button className="bg-red-500/10 hover:bg-red-500 border border-red-500/50 hover:border-red-500 text-red-500 hover:text-black font-mono uppercase tracking-widest rounded-xl px-8 h-11 transition-all duration-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] backdrop-blur-sm">
-              Closed
-            </Button>
+        {/* Desktop Nav Links */}
+        <nav className="hidden lg:flex items-center gap-5">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`font-sans text-[12px] font-medium transition-all duration-200 ${link.href === "#join"
+                ? "text-[#06b6d4] font-bold hover:text-cyan-300"
+                : "text-muted-foreground hover:text-foreground hover:scale-105"
+                }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Actions */}
+        <div className="hidden md:flex items-center gap-3">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-2 rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+          >
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+
+          {/* CTA */}
+          <Link href="#join">
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(6, 182, 212, 0.4)" }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-1.5 bg-gradient-to-r from-[#06b6d4] to-primary text-primary-foreground font-sans text-xs font-bold px-4 py-2 rounded-full transition-all cursor-pointer shadow-md"
+            >
+              <Sparkles size={12} /> Join Community
+            </motion.button>
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-gray-300 hover:text-white transition-colors"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 p-6 shadow-2xl">
-          <ul className="flex flex-col gap-6">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="block font-mono text-gray-300 hover:text-white text-lg tracking-wider uppercase border-b border-white/5 pb-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-            <li className="pt-4">
-              <Link href="/register" className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full bg-red-500 hover:bg-red-600 text-white font-mono font-bold uppercase tracking-widest rounded-xl h-12 transition-all duration-300 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
-                  Closed
-                </Button>
-              </Link>
-            </li>
-          </ul>
+        {/* Mobile toggle */}
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-1.5 rounded-full text-muted-foreground hover:text-foreground cursor-pointer"
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-1.5 rounded-full text-muted-foreground hover:text-foreground cursor-pointer"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
-      )}
-    </nav>
+      </motion.div>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden mt-3 bg-background/95 border border-border backdrop-blur-xl rounded-3xl p-6 shadow-2xl flex flex-col gap-3 dark:bg-black/95 dark:border-white/10"
+          >
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="font-sans text-sm font-medium text-muted-foreground hover:text-foreground py-2 border-b border-border transition-colors flex items-center justify-between"
+                onClick={() => setMobileOpen(false)}
+              >
+                <span>{link.name}</span>
+                <ArrowRight size={12} className="text-[#06b6d4]" />
+              </Link>
+            ))}
+            <Link href="#join" onClick={() => setMobileOpen(false)}>
+              <button className="w-full bg-gradient-to-r from-[#06b6d4] to-primary text-primary-foreground font-sans text-sm font-bold py-3 rounded-full mt-2 cursor-pointer shadow-lg flex items-center justify-center gap-2">
+                <Sparkles size={14} /> Join Community
+              </button>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

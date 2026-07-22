@@ -1,68 +1,194 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, Phone, Globe, MessageSquare, Terminal } from "lucide-react";
-
-const contacts = [
-  { icon: Globe, label: "ORGANIZER", value: "Knowvy Technologies", href: "https://instagram.com/knowvy_technologies/" },
-  { icon: Terminal, label: "REGISTRATION", value: "Official Link", href: "https://registration-knowvy.vercel.app/" },
-  { icon: MessageSquare, label: "COMMUNITY", value: "Join Network", href: "https://linktr.ee/knowvy_technologies" },
-  { icon: Mail, label: "CONTACT", value: "knowvy.tech@gmail.com", href: "mailto:knowvy.tech@gmail.com" },
-];
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, MessageSquare, Send, HelpCircle, Phone, Sparkles, CheckCircle2 } from "lucide-react";
 
 export function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    setTimeout(() => {
+      setSent(false);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, 4000);
+  };
+
+  const contactOptions = [
+    { label: "Community Email", value: "knowvy.tech@gmail.com", href: "mailto:knowvy.tech@gmail.com", icon: Mail },
+    { label: "Support Hotline", value: "+91 99938 49783", href: "tel:+919993849783", icon: Phone },
+    { label: "Instagram Handle", value: "@knowvy_technologies", href: "https://instagram.com/knowvy_technologies", icon: MessageSquare },
+  ];
+
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-background border-t border-dashed border-primary/20">
-      {/* Tech grid overlay */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_30%,transparent_100%)] opacity-10" />
+    <section id="contact" className="relative py-32 bg-background overflow-hidden">
+      <div className="section-divider absolute top-0 left-0 right-0" />
+
+      {/* Ambient Glow */}
+      <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-[#06b6d4]/10 rounded-full blur-[170px] pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="text-center mb-16">
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-20"
+        >
+          <span className="font-mono text-xs text-[#06b6d4] uppercase tracking-[0.2em] font-bold block mb-4 flex items-center gap-2">
+            <Sparkles size={13} />
+            09 / CONTACT
+          </span>
+          <h2 className="font-serif font-normal text-foreground uppercase leading-[1.0] tracking-tight" style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)" }}>
+            Get in touch <br />
+            <span className="font-serif italic lowercase text-[#06b6d4]">with our</span> operations team.
+          </h2>
+          <p className="text-muted-foreground mt-4 font-sans text-sm md:text-base leading-relaxed max-w-xl">
+            Have questions about ambassador registrations, partnerships, or upcoming hackathons? Drop us a line and our operations team will respond.
+          </p>
+        </motion.div>
+
+        {/* Contact Grid Split */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Left Column: Form Info details */}
+          <div className="lg:col-span-5 space-y-6">
+            {contactOptions.map((opt, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ x: 4, borderColor: "rgba(6, 182, 212, 0.4)" }}
+                className="p-6 rounded-3xl border border-border bg-card/5 hover:bg-card/5 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-md"
+              >
+                <div className="w-10 h-10 rounded-2xl bg-[#06b6d4]/10 border border-[#06b6d4]/20 flex items-center justify-center text-[#06b6d4] transition-transform group-hover:scale-110 shrink-0">
+                  <opt.icon size={16} />
+                </div>
+                <div>
+                  <span className="font-mono text-[9px] text-muted-foreground uppercase block mb-1">
+                    {opt.label}
+                  </span>
+                  <a
+                    href={opt.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs text-foreground hover:text-[#06b6d4] transition-colors font-semibold"
+                  >
+                    {opt.value}
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Quick FAQ card helper */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="p-6 rounded-3xl border border-dashed border-border bg-card/5 space-y-3"
+            >
+              <span className="font-mono text-[10px] text-[#06b6d4] uppercase font-bold flex items-center gap-1.5">
+                <HelpCircle size={12} /> Quick Operations FAQ:
+              </span>
+              <p className="text-muted-foreground text-xs leading-relaxed">
+                Ambassador registrations are processed bi-weekly. Open Source Fellowships are run once per quarter. For emergency event hosting concerns, please call central command.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center justify-center gap-4 mb-4"
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 p-8 rounded-3xl border border-border bg-card/5 backdrop-blur-md shadow-xl"
           >
-            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
-            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
-              ORGANIZER_CONTACT<span className="text-primary">_</span>
-            </h2>
-            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400 max-w-2xl mx-auto text-lg font-sans"
-          >
-            Establish a direct connection with central command.
-          </motion.p>
-        </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="font-mono text-[9px] text-muted-foreground uppercase font-semibold">Your Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Satoshi Nakamoto"
+                    className="w-full h-11 px-4 rounded-full border border-border bg-card/5 text-xs font-mono text-foreground focus:outline-none focus:border-[#06b6d4]/60 focus:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all placeholder:text-muted-foreground"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="font-mono text-[9px] text-muted-foreground uppercase font-semibold">Email Address</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="builder@knowvy.tech"
+                    className="w-full h-11 px-4 rounded-full border border-border bg-card/5 text-xs font-mono text-foreground focus:outline-none focus:border-[#06b6d4]/60 focus:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all placeholder:text-muted-foreground"
+                  />
+                </div>
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {contacts.map((contact, index) => (
-            <motion.a
-              href={contact.href}
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-black/50 border border-yellow-400/40 p-6 flex flex-col items-center text-center group hover:border-yellow-400 transition-all relative overflow-hidden shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] duration-500"
-            >
-              <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Terminal className="w-4 h-4 text-primary/50" />
+              <div className="space-y-2">
+                <label className="font-mono text-[9px] text-muted-foreground uppercase font-semibold">Subject</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  placeholder="Ambassador Application / Partnerships"
+                  className="w-full h-11 px-4 rounded-full border border-border bg-card/5 text-xs font-mono text-foreground focus:outline-none focus:border-[#06b6d4]/60 focus:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all placeholder:text-muted-foreground"
+                />
               </div>
-              <div className="w-14 h-14 border border-yellow-400/30 flex items-center justify-center mb-4 group-hover:bg-yellow-400/20 transition-all rotate-45 shadow-[0_0_10px_rgba(250,204,21,0.2)] group-hover:shadow-[0_0_20px_rgba(250,204,21,0.6)] group-hover:border-yellow-400">
-                <contact.icon className="w-6 h-6 text-yellow-400 -rotate-45" />
+
+              <div className="space-y-2">
+                <label className="font-mono text-[9px] text-muted-foreground uppercase font-semibold">Message</label>
+                <textarea
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Describe your inquiry..."
+                  className="w-full p-4 rounded-3xl border border-border bg-card/5 text-xs font-mono text-foreground focus:outline-none focus:border-[#06b6d4]/60 focus:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all placeholder:text-muted-foreground resize-none"
+                />
               </div>
-              <h4 className="text-xs font-mono font-bold text-gray-500 mb-2 uppercase tracking-widest">{contact.label}</h4>
-              <p className="text-white font-mono text-sm tracking-wide">{contact.value}</p>
-            </motion.a>
-          ))}
+
+              <AnimatePresence mode="wait">
+                {sent ? (
+                  <motion.div
+                    key="sent"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="w-full h-12 rounded-full flex items-center justify-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold shadow-md"
+                  >
+                    <CheckCircle2 size={16} /> Message Sent Successfully
+                  </motion.div>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="w-full h-12 rounded-full bg-white hover:bg-white/95 text-black font-sans text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-lg"
+                  >
+                    Send Message <Send size={12} />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>

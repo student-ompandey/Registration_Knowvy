@@ -1,99 +1,116 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-
-const faqs = [
-  {
-    question: "Is the event beginner friendly?",
-    answer: "Yes. Students, beginners, and experienced professionals are all welcome.",
-  },
-  {
-    question: "What technology stack is focused in the workshop?",
-    answer: "The workshop focuses directly on Microsoft and Azure technologies, including Azure OpenAI, Azure AI Search, Microsoft Copilot Studio, and Azure cloud application deployment.",
-  },
-  {
-    question: "Will certificates be provided?",
-    answer: "Event organizers will share certificate details closer to the event.",
-  },
-  {
-    question: "How can I register?",
-    answer: "You can register using the official registration link.",
-  },
-  {
-    question: "Who should attend?",
-    answer: "Students, developers, AI enthusiasts, founders, and technology professionals interested in building real-world AI systems with Microsoft cloud suites.",
-  },
-  {
-    question: "How does the referral system work?",
-    answer: "When you register, your mobile number becomes your referral code. Share this code with your friends. If 7 or more people register using your referral code, your entire registration fee will be refunded! Plus, the top referrers with the maximum referrals will be rewarded with extra cash prizes and exclusive event rewards!",
-  },
-  {
-    question: "How to become a community partner?",
-    answer: "Simply send an email to knowvy.tech@gmail.com expressing your interest. Include details about your community, social media links, and how you would like to collaborate. Our team will get back to you shortly!",
-  },
-];
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, Sparkles } from "lucide-react";
 
 export function FAQSection() {
-  return (
-    <section id="faq" className="py-24 relative bg-card/10 border-t border-dashed border-primary/20">
-      <div className="container mx-auto px-6 md:px-12 max-w-3xl">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center justify-center gap-4 mb-4"
-          >
-            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
-            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-white uppercase">
-              FREQUENTLY_ASKED<span className="text-primary">_</span>
-            </h2>
-            <div className="h-[1px] w-8 border-t border-dashed border-primary/50"></div>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400 font-sans"
-          >
-            Query the database for common inquiries and system parameters.
-          </motion.p>
-        </div>
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
+  const faqs = [
+    {
+      question: "What is Knowvy Technologies?",
+      answer: "Knowvy Technologies is a premium technology ecosystem and student developer community. We organize hackathons, workshops, mentorship cohorts, and networking events to bridge the gap between academic theory and industry engineering standards.",
+    },
+    {
+      question: "Who can join the community?",
+      answer: "Anyone who is passionate about building! Whether you are a first-year college student learning your first language, a senior developer looking to mentor, or a designer interested in visual systems, you are welcome here.",
+    },
+    {
+      question: "Are there fees for events or bootcamps?",
+      answer: "Most of our community events, open-source cohorts, and webinars are completely free. If an event has a structural cost (like venue hosting, catering, or extensive sandbox servers), we secure industry sponsors to keep prices minimal or fully subsidized.",
+    },
+    {
+      question: "What is the Campus Ambassador Program?",
+      answer: "It is our leadership training track where selected students represent Knowvy on campus. Ambassadors coordinate local hackathons, run peer-to-peer coding study groups, and get direct internship referrals as well as sponsored dev merchandise.",
+    },
+    {
+      question: "How can startups or companies partner with us?",
+      answer: "We partner with companies for developer hiring, product evangelism, and sandbox tooling promotions. Drop us an email at knowvy.tech@gmail.com to request our sponsorship deck and pitch guidelines.",
+    },
+  ];
+
+  return (
+    <section id="faq" className="py-32 relative bg-background overflow-hidden">
+      <div className="section-divider absolute top-0 left-0 right-0" />
+
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#8b5cf6]/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 md:px-12 max-w-4xl relative z-10">
+        {/* Title */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
         >
-          <Accordion className="w-full space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
+          <span className="font-mono text-xs text-[#06b6d4] uppercase tracking-[0.2em] font-bold block mb-4 flex items-center gap-2">
+            <Sparkles size={13} />
+            10 / FAQ
+          </span>
+          <h2 className="font-serif font-normal text-foreground uppercase leading-[1.0] tracking-tight" style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)" }}>
+            Resolving community <br />
+            <span className="font-serif italic lowercase text-[#06b6d4]">and learning</span> queries.
+          </h2>
+          <p className="text-muted-foreground mt-4 font-sans text-sm md:text-base leading-relaxed max-w-xl">
+            Got queries? Search our database for general community mechanics, registrations, and ambassador roles.
+          </p>
+        </motion.div>
+
+        {/* Accordion container */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => {
+            const isOpen = openIdx === index;
+            return (
+              <motion.div
                 key={index}
-                value={`item-${index}`}
-                className="bg-black/50 border border-primary/20 px-6 py-2 rounded-none data-[state=open]:border-primary transition-colors group"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? "border-[#06b6d4]/50 bg-card/5 shadow-[0_0_25px_rgba(6,182,212,0.1)]"
+                    : "border-border bg-card/5 hover:border-border hover:bg-card/5"
+                }`}
               >
-                <AccordionTrigger className="text-left text-lg font-mono font-medium text-white hover:text-primary hover:no-underline uppercase tracking-wide">
-                  <span className="flex items-center gap-3">
-                    <span className="text-primary/50 text-sm group-hover:text-primary transition-colors">[{String(index + 1).padStart(2, '0')}]</span>
+                <button
+                  onClick={() => setOpenIdx(isOpen ? null : index)}
+                  className="w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer"
+                >
+                  <span className="flex items-center gap-4 text-base font-serif text-foreground">
+                    <span className="text-[#06b6d4] text-xs font-mono font-bold">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     {faq.question}
                   </span>
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-400 text-base leading-relaxed font-sans border-t border-dashed border-primary/20 pt-4 mt-2">
-                  <span className="text-primary/70 mr-2">{">"}</span>{faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+                  <ChevronDown
+                    className={`w-4 h-4 text-muted-foreground transition-transform duration-300 shrink-0 ${
+                      isOpen ? "rotate-180 text-[#06b6d4]" : ""
+                    }`}
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-6 pb-6 text-muted-foreground text-xs sm:text-sm leading-relaxed font-sans border-t border-border pt-4">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

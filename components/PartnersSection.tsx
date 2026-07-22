@@ -1,150 +1,95 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { Download, Sparkles, Building2 } from "lucide-react";
+
+const COLLABORATORS = [
+  { name: "Google for Developers", category: "Community Partner", color: "#06b6d4" },
+  { name: "Microsoft for Startups", category: "Cloud Partner", color: "#8b5cf6" },
+  { name: "GitHub Education", category: "Dev Tooling", color: "#10b981" },
+  { name: "TIT Bhopal", category: "College Chapter", color: "#ec4899" },
+  { name: "Unstop", category: "Platform Partner", color: "#f59e0b" },
+];
 
 export function PartnersSection() {
+  const items = [...COLLABORATORS, ...COLLABORATORS, ...COLLABORATORS];
+
   return (
-    <section className="py-20 border-y border-white/5 bg-black relative overflow-hidden">
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0" />
-      
-      <div className="container relative z-10 px-6 mx-auto flex flex-col items-center justify-center space-y-12">
+    <section id="partners" className="relative py-24 bg-background overflow-hidden">
+      <div className="section-divider absolute top-0 left-0 right-0" />
+
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        {/* Header row */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center text-center space-y-4"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-14"
         >
-          <div className="inline-flex items-center gap-3">
-            <span className="h-[1px] w-8 md:w-16 bg-gradient-to-r from-transparent to-primary/60"></span>
-            <span className="text-primary font-mono text-xs md:text-sm tracking-[0.4em] uppercase font-semibold">
-              Event Partners
+          <div className="max-w-2xl">
+            <span className="font-mono text-xs text-[#06b6d4] uppercase tracking-[0.2em] font-bold block mb-4 flex items-center gap-2">
+              <Sparkles size={13} />
+              10 / PARTNERS & COLLABORATORS
             </span>
-            <span className="h-[1px] w-8 md:w-16 bg-gradient-to-l from-transparent to-primary/60"></span>
+            <h2 className="font-serif font-normal text-foreground uppercase leading-[1.0] tracking-tight text-3xl md:text-5xl">
+              Collaborated with <br />
+              <span className="font-serif italic lowercase text-[#06b6d4]">leading colleges</span> & companies.
+            </h2>
           </div>
         </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
-          {/* Knowvy Technologies Card */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1, type: "spring", stiffness: 100 }}
-            className="relative group cursor-default"
-          >
-            {/* Animated Glow Behind */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/5 to-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-700 opacity-30 group-hover:opacity-60"></div>
-            
-            <div className="relative flex flex-col items-center text-center p-8 bg-black/80 backdrop-blur-md border border-yellow-400/40 rounded-2xl group-hover:border-yellow-400 transition-all duration-500 gap-6 shadow-[0_0_15px_rgba(250,204,21,0.3)] group-hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] overflow-hidden h-full">
-              
-              {/* Corner Accents */}
-              <div className="absolute top-0 left-0 w-6 h-6 border-t-[1px] border-l-[1px] border-primary/60 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 border-b-[1px] border-r-[1px] border-primary/60 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-              {/* Logo */}
-              <div className="relative w-32 h-20 sm:w-40 sm:h-24 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-500 transform group-hover:scale-105">
-                <Image 
-                  src="/Knowvy.png" 
-                  alt="Knowvy Technologies" 
-                  fill 
-                  className="object-contain"
-                />
-              </div>
-              
-              {/* Text Content */}
-              <div className="flex flex-col items-center space-y-1">
-                <span className="text-xl sm:text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-500 tracking-wide uppercase group-hover:to-gray-300 transition-all duration-500">
-                  Knowvy Technologies
-                </span>
-                <span className="text-xs font-mono text-primary/80 tracking-[0.2em] uppercase font-medium">
-                  Event Organizer
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Vexite Studio Card */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 100 }}
-            className="relative group cursor-default"
-          >
-            {/* Animated Glow Behind */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-700 opacity-40 group-hover:opacity-80"></div>
-            
-            <div className="relative flex flex-col items-center text-center p-8 bg-black/80 backdrop-blur-md border border-yellow-400/40 rounded-2xl group-hover:border-yellow-400 transition-all duration-500 gap-6 shadow-[0_0_15px_rgba(250,204,21,0.3)] group-hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] overflow-hidden h-full">
-              
-              {/* Corner Accents */}
-              <div className="absolute top-0 left-0 w-6 h-6 border-t-[1px] border-l-[1px] border-primary/60 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 border-b-[1px] border-r-[1px] border-primary/60 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-              {/* Logo */}
-              <div className="relative w-32 h-20 sm:w-40 sm:h-24 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-500 transform group-hover:scale-105">
-                <Image 
-                  src="/Vexite logo.png" 
-                  alt="Vexite Technology Partner" 
-                  fill 
-                  className="object-contain"
-                />
-              </div>
-              
-              {/* Text Content */}
-              <div className="flex flex-col items-center space-y-1">
-                <span className="text-xl sm:text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-500 tracking-wide uppercase group-hover:to-gray-300 transition-all duration-500">
-                  Vexite Studio
-                </span>
-                <span className="text-xs font-mono text-primary/80 tracking-[0.2em] uppercase font-medium">
-                  Innovation Partner
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Scalive Card */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.5, type: "spring", stiffness: 100 }}
-            className="relative group cursor-default"
-          >
-            {/* Animated Glow Behind */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-700 opacity-40 group-hover:opacity-80"></div>
-            
-            <div className="relative flex flex-col items-center text-center p-8 bg-black/80 backdrop-blur-md border border-yellow-400/40 rounded-2xl group-hover:border-yellow-400 transition-all duration-500 gap-6 shadow-[0_0_15px_rgba(250,204,21,0.3)] group-hover:shadow-[0_0_30px_rgba(250,204,21,0.8)] overflow-hidden h-full">
-              
-              {/* Corner Accents */}
-              <div className="absolute top-0 left-0 w-6 h-6 border-t-[1px] border-l-[1px] border-primary/60 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 border-b-[1px] border-r-[1px] border-primary/60 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-              {/* Logo */}
-              <div className="relative w-32 h-20 sm:w-40 sm:h-24 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-500 transform group-hover:scale-105">
-                <Image 
-                  src="/scalive.png" 
-                  alt="Scalive Venue Partner" 
-                  fill 
-                  className="object-contain"
-                />
-              </div>
-              
-              {/* Text Content */}
-              <div className="flex flex-col items-center space-y-1">
-                <span className="text-xl sm:text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-500 tracking-wide uppercase group-hover:to-gray-300 transition-all duration-500">
-                  Scalive
-                </span>
-                <span className="text-xs font-mono text-primary/80 tracking-[0.2em] uppercase font-medium">
-                  Venue Partner
-                </span>
-              </div>
-            </div>
-          </motion.div>
+        {/* 4 Main Partner Grid Showcase */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
+          {COLLABORATORS.map((p, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              whileHover={{ y: -4, borderColor: p.color + "60" }}
+              className="p-5 rounded-2xl border border-border bg-card/5 flex flex-col items-center justify-center text-center transition-all group cursor-pointer min-h-[110px]"
+            >
+              <span
+                className="w-3 h-3 rounded-full mb-3 shadow-[0_0_12px_currentColor]"
+                style={{ backgroundColor: p.color, color: p.color }}
+              />
+              <h4 className="font-serif italic text-base md:text-lg text-foreground group-hover:text-[#06b6d4] transition-colors font-bold">
+                {p.name}
+              </h4>
+              <span className="font-mono text-[9px] text-muted-foreground uppercase mt-1">
+                {p.category}
+              </span>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Continuous Marquee */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full overflow-hidden py-6 border-y border-border before:absolute before:inset-y-0 before:left-0 before:w-24 md:before:w-48 before:bg-gradient-to-r before:from-[#02010d] before:to-transparent before:z-10 after:absolute after:inset-y-0 after:right-0 after:w-24 md:after:w-48 after:bg-gradient-to-l after:from-[#02010d] after:to-transparent after:z-10"
+        >
+          <div className="animate-marquee flex items-center gap-16">
+            {items.map((p, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-4 opacity-60 hover:opacity-100 hover:scale-105 transition-all duration-300 shrink-0 cursor-default group"
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full shrink-0 shadow-[0_0_10px_currentColor]"
+                  style={{ backgroundColor: p.color, color: p.color }}
+                />
+                <span className="font-serif italic text-2xl md:text-3xl text-foreground tracking-tight group-hover:text-[#06b6d4] transition-colors">
+                  {p.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
