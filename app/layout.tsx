@@ -19,8 +19,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Knowvy Technologies | Perks with Purpose, Events with Impact",
-  description: "Build one of India's strongest student developer communities by connecting students, developers, startups, companies, mentors, and creators through technology, learning, networking, and real-world opportunities.",
+  title: "Knowvy Technologies | Bhopal Student Community",
+  description: "Connecting Bhopal’s brightest students with India’s biggest startups. From hackathons and internships to mentorship and tech leadership. Your journey starts here.",
 };
 
 export default function RootLayout({
