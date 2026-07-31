@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { ArrowRight, Sparkles, Image as ImageIcon, MapPin, Users, Calendar, Trophy } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+import { ArrowRight, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 
 const STATS = [
@@ -109,55 +108,15 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Column: Visual Community Feature Card */}
-          <motion.div variants={itemVariants} className="lg:col-span-5">
-            <div className="relative rounded-3xl border border-border bg-black/60 backdrop-blur-xl p-7 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden group hover:border-[#06b6d4]/40 transition-all duration-500">
+          {/* Right Column: Hero Collage Image */}
+          <motion.div variants={itemVariants} className="lg:col-span-5 flex items-center justify-center">
+            <div className="relative w-full rounded-3xl border border-border bg-black/40 backdrop-blur-xl p-3 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden group hover:border-[#06b6d4]/40 transition-all duration-500">
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#06b6d4]/20 rounded-full blur-3xl pointer-events-none" />
-
-              {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-border pb-4 mb-5">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#06b6d4] to-primary flex items-center justify-center text-foreground font-mono font-bold text-xs">
-                    K
-                  </div>
-                  <div>
-                    <h3 className="font-serif italic text-sm text-foreground font-semibold">Knowvy Technologies</h3>
-                    <span className="font-mono text-[9px] text-muted-foreground block">Student Community</span>
-                  </div>
-                </div>
-                <span className="px-2.5 py-1 rounded-full text-[9px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  ● ACTIVE
-                </span>
-              </div>
-
-              {/* Content items */}
-              <div className="space-y-4">
-                <div className="p-4 rounded-2xl border border-border bg-card/5">
-                  <span className="font-mono text-[9px] text-[#06b6d4] uppercase tracking-wider font-bold block mb-1">
-                    NEXT BIG EVENT
-                  </span>
-                  <h4 className="font-serif text-lg text-foreground font-semibold">Knowvy Monthly Meetup</h4>
-                  <p className="text-muted-foreground text-xs mt-1">Come and Join the Knowvy Meetup at your city</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 rounded-xl border border-border bg-card/5">
-                    <Users className="w-4 h-4 text-[#06b6d4] mb-1" />
-                    <span className="font-serif italic text-lg text-foreground font-bold block">1,500+</span>
-                    <span className="font-mono text-[9px] text-muted-foreground uppercase">Members</span>
-                  </div>
-                  <div className="p-3 rounded-xl border border-border bg-card/5">
-                    <Calendar className="w-4 h-4 text-purple-400 mb-1" />
-                    <span className="font-serif italic text-lg text-foreground font-bold block">30+</span>
-                    <span className="font-mono text-[9px] text-muted-foreground uppercase">Events Hosted</span>
-                  </div>
-                </div>
-
-                <div className="p-3.5 rounded-2xl border border-dashed border-border bg-card/5 flex items-center justify-between text-xs text-muted-foreground">
-                  <span className="font-mono text-[10px] uppercase text-muted-foreground">Community Hub</span>
-                  <span className="font-mono text-[10px] text-[#06b6d4] font-bold">WhatsApp / Discord</span>
-                </div>
-              </div>
+              <img
+                src="/hero-collage.png"
+                alt="Knowvy Community Highlights Collage"
+                className="w-full h-auto rounded-2xl object-cover shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+              />
             </div>
           </motion.div>
         </div>

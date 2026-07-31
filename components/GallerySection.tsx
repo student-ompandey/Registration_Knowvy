@@ -104,15 +104,7 @@ const GALLERY_EVENTS: GalleryEvent[] = [
     category: "workshop",
     gradient: "from-[#06b6d4]/40 via-[#8b5cf6]/30 to-transparent",
     photos: [],
-  },
-  {
-    id: "codesprint",
-    name: "CodeSprint Bhopal",
-    date: "Mar 2026",
-    category: "hackathon",
-    gradient: "from-indigo-500/40 via-cyan-500/30 to-emerald-900/40",
-    photos: [],
-  },
+  }
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
