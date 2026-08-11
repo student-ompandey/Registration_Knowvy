@@ -1,159 +1,116 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { Sparkles, Layers } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { Section, SectionHead, revealUp, stagger } from "./ui/kit";
 
 const TRACKS = [
   {
     idx: "01",
-    title: (
-      <span>
-        Hackathons <span className="font-serif italic text-[#06b6d4]">with stakes</span>, not stickers.
-      </span>
-    ),
-    meta: "48-HOUR BUILDS ● OFFLINE & REMOTE ● PRIZE POOL ₹10L+",
-    highlight: true,
+    title: "Hackathons with stakes, not stickers",
+    meta: "48-hour builds · Offline & remote · Prize pool ₹10L+",
+    flagship: true,
   },
   {
     idx: "02",
     title: "Workshops & Cohorts",
-    meta: "HANDS-ON ● SMALL COHORTS ● MENTORSHIP",
+    meta: "Hands-on · Small cohorts · Mentorship",
   },
   {
     idx: "03",
     title: "Bootcamps",
-    meta: "6-WEEK INTENSIVES ● PRODUCTION CODE",
+    meta: "6-week intensives · Production code",
   },
   {
     idx: "04",
     title: "Meetups",
-    meta: "CITY-FIRST ● MONTHLY ● NETWORKING",
+    meta: "City-first · Monthly · Networking",
   },
   {
     idx: "05",
-    title: (
-      <span>
-        Tech <span className="font-serif italic text-[#06b6d4]">Talks</span> & AMA
-      </span>
-    ),
-    meta: "FOUNDERS ● STAFF ENGINEERS ● ARCHITECTS",
+    title: "Tech Talks & AMA",
+    meta: "Founders · Staff engineers · Architects",
   },
   {
     idx: "06",
     title: "Open Source",
-    meta: "MVP ● MAINTAINER TRACK ● PR SPRINTS",
+    meta: "MVP · Maintainer track · PR sprints",
   },
   {
     idx: "07",
     title: "Career Sessions",
-    meta: "RESUME REVIEW ● MOCK INTERVIEWS ● OFFERS",
+    meta: "Resume review · Mock interviews · Offers",
   },
   {
     idx: "08",
     title: "Agentic AI",
-    meta: "PROMPTING ● MULTI-AGENT PIPELINES ● VECTOR SEARCH",
+    meta: "Prompting · Multi-agent pipelines · Vector search",
   },
   {
     idx: "09",
     title: "Cloud & DevOps",
-    meta: "SERVERLESS ● CONTAINERS ● CI/CD PIPELINES",
+    meta: "Serverless · Containers · CI/CD pipelines",
   },
 ];
 
 export function WhatWeDo() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
   return (
-    <section id="what-we-do" className="relative py-32 bg-background overflow-hidden">
-      <div className="section-divider absolute top-0 left-0 right-0" />
+    <Section id="what-we-do">
+      <SectionHead
+        index="03"
+        eyebrow="What we do"
+        title={
+          <>
+            Nine ways to <span className="text-brand">ship</span> — pick your entry
+            point
+          </>
+        }
+        aside="From your first Git commit to your first funded startup. The lattice is designed so every stage of a student's journey has a room."
+      />
 
-      {/* Ambient background glow */}
-      <div className="absolute top-1/4 left-10 w-[400px] h-[400px] bg-[#8b5cf6]/10 rounded-full blur-[150px] pointer-events-none" />
+      {/* Index rows */}
+      <motion.ul
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        className="mt-14 border-t border-border"
+      >
+        {TRACKS.map((track) => (
+          <motion.li key={track.idx} variants={revealUp} className="border-b border-border">
+            <div className="group relative flex cursor-default items-center gap-4 px-2 py-6 transition-colors duration-300 hover:bg-brand hover:text-brand-ink md:gap-8 md:px-5">
+              <span className="u-label-sm w-7 shrink-0 tabular-nums text-muted-foreground transition-colors duration-300 group-hover:text-brand-ink/60">
+                {track.idx}
+              </span>
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        {/* Section title & layout grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16"
-        >
-          <div className="lg:col-span-8">
-            <span className="font-mono text-xs text-[#06b6d4] uppercase tracking-[0.2em] font-bold block mb-4 flex items-center gap-2">
-              <Layers size={14} />
-              03 / WHAT WE DO
-            </span>
-            <h2 className="font-serif font-normal text-foreground uppercase leading-[1.0] tracking-tight" style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)" }}>
-              Nine ways to <span className="font-serif italic lowercase text-[#06b6d4]">ship</span> — <br />
-              pick your entry point.
-            </h2>
-          </div>
-          <div className="lg:col-span-4 flex items-end justify-start lg:justify-end h-full">
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
-              From your first Git commit to your first funded startup. The lattice is designed so every stage of a student's journey has a room.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Tracks Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {TRACKS.map((track, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              whileHover={{ y: -6, scale: 1.01 }}
-              className={`p-8 rounded-3xl border transition-all duration-300 flex flex-col justify-between min-h-[170px] group cursor-pointer ${
-                track.highlight
-                  ? "border-[#06b6d4]/40 bg-gradient-to-br from-white/[0.03] to-[#06b6d4]/5 shadow-[0_0_30px_rgba(6,182,212,0.1)]"
-                  : "border-border bg-card/5 hover:border-[#06b6d4]/30 hover:bg-card/5"
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[10px] text-[#06b6d4] font-bold block">
-                    / {track.idx}
-                  </span>
-                  {track.highlight && (
-                    <span className="px-2 py-0.5 rounded-full text-[8px] font-mono font-bold uppercase bg-[#06b6d4]/10 text-[#06b6d4] border border-[#06b6d4]/20 flex items-center gap-1">
-                      <Sparkles size={10} /> Flagship
-                    </span>
-                  )}
-                </div>
-                <h3 className="font-serif text-2xl text-foreground tracking-tight leading-tight group-hover:text-[#06b6d4] transition-colors">
+              <div className="min-w-0 flex-1">
+                {/* leading-[0.95] rather than the global 0.88 — these titles wrap */}
+                <h3 className="u-display text-[clamp(1.35rem,3.2vw,2.4rem)] leading-[0.95]">
                   {track.title}
                 </h3>
+                <p className="u-label-sm mt-3 text-muted-foreground transition-colors duration-300 group-hover:text-brand-ink/70 lg:hidden">
+                  {track.meta}
+                </p>
               </div>
-              <span className="font-mono text-[9px] text-muted-foreground uppercase tracking-widest block mt-6 group-hover:text-muted-foreground transition-colors">
+
+              <p className="u-label-sm hidden w-[21rem] shrink-0 text-right leading-[1.9] text-muted-foreground transition-colors duration-300 group-hover:text-brand-ink/70 lg:block">
                 {track.meta}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+              </p>
+
+              {track.flagship && (
+                <span className="u-label-sm hidden shrink-0 rounded-full bg-pop px-2.5 py-1.5 text-pop-ink sm:inline-block">
+                  Flagship
+                </span>
+              )}
+
+              <ArrowUpRight
+                size={20}
+                className="shrink-0 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+              />
+            </div>
+          </motion.li>
+        ))}
+      </motion.ul>
+    </Section>
   );
 }

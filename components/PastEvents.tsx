@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin, Users, Award, ExternalLink, Sparkles, X } from "lucide-react";
+import { Calendar, MapPin, Users, X, ArrowUpRight } from "lucide-react";
+import { Section, SectionHead, revealUp, stagger } from "./ui/kit";
+
+type Category = "Hackathon" | "Dev Day" | "Meetup" | "Workshop";
 
 interface PastEventItem {
   id: number;
@@ -10,11 +13,18 @@ interface PastEventItem {
   date: string;
   location: string;
   attendees: string;
-  category: "Hackathon" | "Dev Day" | "Meetup" | "Workshop";
+  category: Category;
   desc: string;
   highlights: string[];
-  gradient: string;
 }
+
+/** One tone per category — resolves per theme via CSS vars. */
+const TONE: Record<Category, string> = {
+  Hackathon: "var(--s4)",
+  "Dev Day": "var(--s2)",
+  Workshop: "var(--s1)",
+  Meetup: "var(--s5)",
+};
 
 const PAST_EVENTS: PastEventItem[] = [
   {
@@ -26,7 +36,6 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Hackathon",
     desc: "Technocats Innovation Challange is a 36-hour offline hackathon organised by Knowvy Technologies and Vexite Studio.",
     highlights: ["50 Teams", "₹100k Prize Pool", "National Hachathon"],
-    gradient: "from-pink-500/30 via-purple-500/20 to-indigo-500/10",
   },
   {
     id: 2,
@@ -37,7 +46,6 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Dev Day",
     desc: "An flagship event bringing Microsoft technologies, Azure AI, and modern web architectures to students in Bhopal with live keynote streaming & hands-on labs.",
     highlights: ["Azure AI Workshop", "Keynote Stream", "Swag & Certification"],
-    gradient: "from-blue-600/30 via-indigo-600/20 to-purple-600/10",
   },
   {
     id: 3,
@@ -48,7 +56,6 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Workshop",
     desc: "Interactive session exploring AI-assisted software development, rapid prototyping with GitHub Copilot, and automated unit test generation.",
     highlights: ["Copilot Pro Access", "Live PR Challenge", "Developer Badges"],
-    gradient: "from-purple-600/30 via-pink-600/20 to-cyan-600/10",
   },
   {
     id: 4,
@@ -59,7 +66,6 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Meetup",
     desc: "Visual collaboration meetup focused on system design diagramming, UX wireframing, and product management workflows for student founders.",
     highlights: ["Miro Swag Kits", "System Design Slam", "Networking Dinner"],
-    gradient: "from-amber-500/30 via-orange-500/20 to-rose-500/10",
   },
   {
     id: 5,
@@ -70,7 +76,6 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Hackathon",
     desc: "A 36-hour intense hackathon where student teams built autonomous multi-agent systems, LangChain workflows, and AI vector database tools.",
     highlights: ["₹1.5L Prize Pool", "VC Mentorship", "4 Funded Prototypes"],
-    gradient: "from-cyan-500/30 via-blue-500/20 to-emerald-500/10",
   },
   {
     id: 6,
@@ -81,7 +86,6 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Dev Day",
     desc: "Deep dive into AWS cloud architecture, container deployments, and hands-on cloud labs for student developers.",
     highlights: ["AWS Cloud Labs", "Serverless Architecture", "Cloud Credits"],
-    gradient: "from-emerald-500/30 via-teal-500/20 to-blue-500/10",
   },
   {
     id: 7,
@@ -92,7 +96,6 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Workshop",
     desc: "A weekend PR sprint guiding student developers to resolve real GitHub issues, review pull requests, and contribute to popular open source repos.",
     highlights: ["48 Merged PRs", "First-time Contributor Badges", "T-Shirt Giveaways"],
-    gradient: "from-[#06b6d4]/30 via-[#8b5cf6]/20 to-transparent",
   },
   {
     id: 8,
@@ -103,157 +106,161 @@ const PAST_EVENTS: PastEventItem[] = [
     category: "Hackathon",
     desc: "Competitive programming and rapid MVP development sprint testing algorithmic efficiency and full-stack deployment skills under time limits.",
     highlights: ["Competitive Leaderboard", "Mentorship Sessions", "Placement Referrals"],
-    gradient: "from-indigo-500/30 via-cyan-500/20 to-emerald-500/10",
   },
 ];
 
 export function PastEvents() {
-  const [selectedEvent, setSelectedEvent] = useState<PastEventItem | null>(null);
+  const [selected, setSelected] = useState<PastEventItem | null>(null);
+
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setSelected(null);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [selected]);
 
   return (
-    <section id="past-events" className="relative py-32 bg-background overflow-hidden">
-      <div className="section-divider absolute top-0 left-0 right-0" />
+    <Section id="past-events">
+      <SectionHead
+        index="03"
+        eyebrow="Past events & highlights"
+        title="Proven track record"
+        aside="Explore our flagship past events, developer days, and hackathons hosted for students across Bhopal."
+      />
 
-      {/* Ambient background glow */}
-      <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-[#8b5cf6]/10 rounded-full blur-[170px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
-        >
-          <div>
-            <span className="font-mono text-xs text-[#06b6d4] uppercase tracking-[0.2em] font-bold block mb-4 flex items-center gap-2">
-              <Sparkles size={13} />
-              03 / PAST EVENTS & HIGHLIGHTS
-            </span>
-            <h2 className="font-serif font-normal text-foreground uppercase leading-[1.0] tracking-tight" style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)" }}>
-              Proven track record <br />
-            </h2>
-          </div>
-
-          <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-sm">
-            Explore our flagship past events, developer days, and hackathons hosted for students across Bhopal.
-          </p>
-        </motion.div>
-
-        {/* Past Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PAST_EVENTS.map((evt, idx) => (
-            <motion.div
-              key={evt.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.06 }}
-              whileHover={{ y: -6, borderColor: "rgba(6, 182, 212, 0.4)" }}
-              onClick={() => setSelectedEvent(evt)}
-              className="p-6 rounded-3xl border border-border bg-card/5 hover:bg-card/5 transition-all duration-300 group flex flex-col justify-between cursor-pointer overflow-hidden relative shadow-md min-h-[280px]"
+      <motion.ul
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        {PAST_EVENTS.map((evt) => (
+          <motion.li key={evt.id} variants={revealUp}>
+            <button
+              onClick={() => setSelected(evt)}
+              className="u-card group flex h-full w-full flex-col justify-between p-6 text-left"
             >
-              {/* Card gradient backdrop */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${evt.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-
-              <div className="relative z-10 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-[9px] font-mono uppercase tracking-widest font-bold border border-[#06b6d4]/40 text-[#06b6d4] bg-[#06b6d4]/10">
+              <div>
+                <div className="flex items-start justify-between gap-3">
+                  <span
+                    className="u-label-sm shrink-0 whitespace-nowrap rounded-full px-2.5 py-1.5"
+                    style={{ background: TONE[evt.category], color: "var(--bg-2)" }}
+                  >
                     {evt.category}
                   </span>
-                  <span className="text-[9px] font-mono text-muted-foreground flex items-center gap-1">
-                    <Users size={11} className="text-muted-foreground" /> {evt.attendees}
+                  <span className="u-label-sm inline-flex items-center gap-1.5 text-right leading-[1.6] text-muted-foreground">
+                    <Users size={11} /> {evt.attendees}
                   </span>
                 </div>
 
-                <h3 className="font-serif italic text-xl text-foreground group-hover:text-[#06b6d4] transition-colors leading-tight font-semibold">
+                <h3 className="u-display mt-7 text-[1.375rem] leading-[0.95]">
                   {evt.title}
                 </h3>
 
-                <p className="text-muted-foreground text-xs leading-relaxed line-clamp-3">
+                <p className="mt-3 line-clamp-3 text-[0.8125rem] leading-relaxed text-muted-foreground">
                   {evt.desc}
                 </p>
               </div>
 
-              <div className="relative z-10 border-t border-border pt-4 mt-6 flex items-center justify-between text-xs text-muted-foreground">
-                <span className="flex items-center gap-1.5 font-mono text-[10px]">
-                  <Calendar size={12} className="text-[#06b6d4]" /> {evt.date}
+              <div className="mt-8 flex items-center justify-between border-t border-border pt-4">
+                <span className="u-label-sm inline-flex items-center gap-1.5 text-muted-foreground">
+                  <Calendar size={11} /> {evt.date}
                 </span>
-                <span className="font-mono text-[10px] text-[#06b6d4] font-bold group-hover:translate-x-1 transition-transform">
-                  View →
-                </span>
+                <ArrowUpRight
+                  size={16}
+                  className="text-muted-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
+                />
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            </button>
+          </motion.li>
+        ))}
+      </motion.ul>
 
-      {/* Detail Modal */}
+      {/* Detail dialog */}
       <AnimatePresence>
-        {selectedEvent && (
+        {selected && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/85 backdrop-blur-md"
-            onClick={() => setSelectedEvent(null)}
+            transition={{ duration: 0.2 }}
+            onClick={() => setSelected(null)}
+            className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-black/70 p-5 backdrop-blur-md"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={selected.title}
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-lg rounded-3xl border border-border bg-card p-8 shadow-2xl relative overflow-hidden"
+              className="relative my-auto w-full max-w-xl rounded-2xl border border-border bg-surface p-7 shadow-[var(--shadow-lift)] md:p-9"
             >
               <button
-                onClick={() => setSelectedEvent(null)}
-                className="absolute top-6 right-6 w-9 h-9 rounded-full border border-border bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                onClick={() => setSelected(null)}
+                aria-label="Close"
+                className="absolute right-5 top-5 grid size-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-border-strong hover:text-foreground"
               >
-                <X className="w-4 h-4" />
+                <X size={15} />
               </button>
 
-              <span className="px-3 py-1 rounded-full text-[9px] font-mono uppercase tracking-widest font-bold border border-[#06b6d4]/40 text-[#06b6d4] bg-[#06b6d4]/10 inline-block mb-4">
-                {selectedEvent.category}
+              <span
+                className="u-label-sm inline-block rounded-full px-2.5 py-1.5"
+                style={{ background: TONE[selected.category], color: "var(--bg-2)" }}
+              >
+                {selected.category}
               </span>
 
-              <h3 className="font-serif italic text-2xl md:text-3xl text-foreground uppercase tracking-tight mb-3">
-                {selectedEvent.title}
+              <h3 className="u-display mt-5 text-[clamp(1.75rem,5vw,2.5rem)] leading-[0.92]">
+                {selected.title}
               </h3>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground mb-6">
-                <span className="flex items-center gap-1.5"><Calendar size={13} className="text-[#06b6d4]" /> {selectedEvent.date}</span>
-                <span className="flex items-center gap-1.5"><MapPin size={13} className="text-[#06b6d4]" /> {selectedEvent.location}</span>
-                <span className="flex items-center gap-1.5"><Users size={13} className="text-[#06b6d4]" /> {selectedEvent.attendees}</span>
+              <div className="u-label-sm mt-5 flex flex-wrap gap-x-5 gap-y-2.5 text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5">
+                  <Calendar size={12} /> {selected.date}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin size={12} /> {selected.location}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Users size={12} /> {selected.attendees}
+                </span>
               </div>
 
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                {selectedEvent.desc}
+              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+                {selected.desc}
               </p>
 
-              <div className="p-4 rounded-2xl border border-border bg-card/5 space-y-3 mb-6">
-                <span className="font-mono text-[10px] text-[#06b6d4] uppercase font-bold block">
-                  // Event Highlights & Perks
+              <div className="mt-7 border-t border-border pt-6">
+                <span className="u-label-sm text-muted-foreground">
+                  Highlights & perks
                 </span>
-                <ul className="space-y-2">
-                  {selectedEvent.highlights.map((h, i) => (
-                    <li key={i} className="flex items-center gap-2 text-xs text-foreground/80 font-sans">
-                      <Award size={13} className="text-[#06b6d4]" /> {h}
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {selected.highlights.map((h) => (
+                    <li key={h} className="u-chip u-label-sm text-foreground">
+                      {h}
                     </li>
                   ))}
                 </ul>
               </div>
 
               <button
-                onClick={() => setSelectedEvent(null)}
-                className="w-full h-11 rounded-full bg-white text-black font-sans text-xs font-bold transition-all cursor-pointer"
+                onClick={() => setSelected(null)}
+                className="u-btn u-btn-invert mt-8 w-full"
               >
-                Close Highlights
+                Close highlights
               </button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </Section>
   );
 }

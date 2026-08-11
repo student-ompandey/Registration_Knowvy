@@ -2,57 +2,49 @@
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ArrowRight, Sparkles, GraduationCap } from "lucide-react";
+import { Reveal } from "@/components/ui/kit";
+import { ArrowUpRight, GraduationCap } from "lucide-react";
 
 export default function RegisterPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#02010d] transition-colors duration-500">
+    <main className="flex min-h-screen flex-col bg-background text-foreground">
       <Navbar />
-      <div className="flex-grow pt-32 pb-20 relative overflow-hidden flex items-center justify-center">
-        {/* Background grids */}
-        <div className="absolute inset-0 z-0 bg-dot-pattern opacity-15 pointer-events-none" />
 
-        <div className="container relative z-10 px-6 mx-auto flex flex-col items-center">
-          <div className="w-full max-w-xl p-8 md:p-10 rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md text-center space-y-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#06b6d4]/20 bg-[#06b6d4]/5">
-              <Sparkles className="w-3.5 h-3.5 text-[#06b6d4]" />
-              <span className="font-mono text-[9px] text-[#06b6d4] uppercase tracking-wider font-bold">
-                COMMUNITY HUB ACCESS
-              </span>
-            </div>
+      <div className="relative flex flex-grow items-center justify-center overflow-hidden pb-24 pt-40">
+        <div className="u-grid-bg pointer-events-none absolute inset-0 opacity-70" />
 
-            <div className="space-y-3">
-              <h1 className="font-serif italic text-3xl md:text-4xl text-white uppercase tracking-tight">
-                Connect and Collaborate
-              </h1>
-              <p className="text-white/60 text-xs sm:text-sm leading-relaxed max-w-sm mx-auto">
-                Registrations for cohort events are run through our official Discord gateway. Select an option below to enter.
-              </p>
-            </div>
+        <Reveal className="relative z-10 mx-auto w-full max-w-xl px-6">
+          <div className="u-card p-8 text-center md:p-10">
+            <span className="u-label inline-flex items-center gap-2.5">
+              <span className="u-pulse inline-block size-1.5 rounded-full bg-pop" />
+              Community hub access
+            </span>
 
-            <div className="space-y-4">
-              {/* Discord gateway button */}
+            <h1 className="u-display u-d3 mt-6">Connect and collaborate</h1>
+
+            <p className="mx-auto mt-5 max-w-sm text-[0.9375rem] leading-relaxed text-muted-foreground">
+              Registrations for cohort events are run through our official Discord
+              gateway. Select an option below to enter.
+            </p>
+
+            <div className="mt-9 space-y-3">
               <a
                 href="https://discord.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full block"
+                className="u-btn u-btn-primary w-full"
               >
-                <button className="w-full bg-white hover:bg-white/95 text-black font-sans text-xs font-bold rounded-full h-12 flex items-center justify-center gap-2 transition-all cursor-pointer">
-                  Join Discord Portal <ArrowRight size={14} />
-                </button>
+                Join Discord portal <ArrowUpRight size={16} />
               </a>
 
-              {/* Ambassador link */}
-              <a href="#contact" className="w-full block">
-                <button className="w-full bg-white/5 hover:bg-white/10 text-white border border-white/5 hover:border-white/15 font-sans text-xs font-bold rounded-full h-12 flex items-center justify-center gap-2 transition-all cursor-pointer">
-                  <GraduationCap size={16} className="text-[#06b6d4]" /> Campus Ambassador Form
-                </button>
+              <a href="/#contact" className="u-btn u-btn-ghost w-full">
+                <GraduationCap size={16} /> Campus ambassador form
               </a>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
+
       <Footer />
     </main>
   );
