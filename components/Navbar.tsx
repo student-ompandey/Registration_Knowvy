@@ -5,9 +5,12 @@ import Link from "next/link";
 import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { ThemeToggle } from "./ThemeToggle";
+
 const NAV_LINKS = [
   { name: "About", href: "/#about" },
   { name: "What We Do", href: "/#what-we-do" },
+  { name: "HeyGen", href: "/heygen" },
   { name: "Events", href: "/#past-events" },
   { name: "Gallery", href: "/#gallery" },
   { name: "Team", href: "/#team" },
@@ -17,13 +20,10 @@ const NAV_LINKS = [
 ];
 
 export function Navbar() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light");
-
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -37,20 +37,6 @@ export function Navbar() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme((current) => {
-      const next = current === "dark" ? "light" : "dark";
-      const root = document.documentElement;
-      root.classList.add("theme-switching");
-      root.classList.toggle("dark", next === "dark");
-      try {
-        localStorage.setItem("theme", next);
-      } catch {}
-      window.setTimeout(() => root.classList.remove("theme-switching"), 420);
-      return next;
-    });
-  }, []);
 
   return (
     <>
@@ -82,37 +68,38 @@ export function Navbar() {
                 : "border-transparent bg-transparent"
             }`}
           >
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="rounded-full px-3 py-2 text-[12.5px] font-medium text-muted-foreground transition-colors duration-200 hover:bg-surface-2 hover:text-foreground"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isHeyGen = link.href === "/heygen";
+              if (isHeyGen) {
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="relative flex items-center gap-1.5 rounded-full border border-brand/60 bg-brand/15 px-3 py-1.5 text-[12.5px] font-bold text-brand shadow-[0_0_15px_rgba(83,36,238,0.35)] transition-all duration-300 hover:bg-brand hover:text-white"
+                  >
+                    <span className="relative flex size-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-80" />
+                      <span className="relative inline-flex size-2 rounded-full bg-brand" />
+                    </span>
+                    <span>{link.name}</span>
+                  </Link>
+                );
+              }
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="rounded-full px-3 py-2 text-[12.5px] font-medium text-muted-foreground transition-colors duration-200 hover:bg-surface-2 hover:text-foreground"
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Actions */}
           <div className="flex shrink-0 items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-              className="grid size-10 place-items-center rounded-full border border-border bg-background/70 text-muted-foreground backdrop-blur-xl transition-colors hover:border-border-strong hover:text-foreground"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={theme}
-                  initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.22 }}
-                  className="grid place-items-center"
-                >
-                  {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-                </motion.span>
-              </AnimatePresence>
-            </button>
+            <ThemeToggle />
 
             <Link href="/#join" className="hidden md:inline-flex">
               <span className="u-btn u-btn-primary h-10 px-5 text-[12.5px]">
@@ -145,27 +132,38 @@ export function Navbar() {
           >
             <div className="flex h-full flex-col justify-between px-6 pb-10 pt-28">
               <nav className="flex flex-col">
-                {NAV_LINKS.map((link, i) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.04 + i * 0.035, duration: 0.4 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-baseline justify-between border-b border-border py-4"
+                {NAV_LINKS.map((link, i) => {
+                  const isHeyGen = link.href === "/heygen";
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.04 + i * 0.035, duration: 0.4 }}
                     >
-                      <span className="u-display text-[7vw] leading-none sm:text-3xl">
-                        {link.name}
-                      </span>
-                      <span className="u-label-sm text-muted-foreground">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={`flex items-baseline justify-between border-b border-border py-4 ${
+                          isHeyGen ? "text-brand" : ""
+                        }`}
+                      >
+                        <span className="u-display text-[7vw] leading-none sm:text-3xl flex items-center gap-2.5">
+                          {link.name}
+                          {isHeyGen && (
+                            <span className="relative flex size-2.5">
+                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-80" />
+                              <span className="relative inline-flex size-2.5 rounded-full bg-brand" />
+                            </span>
+                          )}
+                        </span>
+                        <span className="u-label-sm text-muted-foreground">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </nav>
 
               <Link href="/#join" onClick={() => setMobileOpen(false)} className="mt-8">

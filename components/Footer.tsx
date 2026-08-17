@@ -15,6 +15,7 @@ const SOCIALS = [
 
 const NAV = [
   { name: "Home", href: "/#home" },
+  { name: "HeyGen RoadShow", href: "/heygen" },
   { name: "About", href: "/#about" },
   { name: "What We Do", href: "/#what-we-do" },
   { name: "Events", href: "/#past-events" },

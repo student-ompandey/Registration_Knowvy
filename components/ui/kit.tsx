@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
    Motion
 ─────────────────────────────────────────── */
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+export const EASE = [0.22, 1, 0.36, 1] as const;
 
 export const revealUp: Variants = {
   hidden: { opacity: 0, y: 22 },
